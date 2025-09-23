@@ -16,13 +16,13 @@ export default function App(){
       id: "50",
       title: "Toma aqui uns 50,00",
       price: 50.00,
-      img: "src/images/50.png",
+      img: "/images/50.png",
     },
     {
       id: "aluguel",
       title: "Aluguel de bebê para treinamento",
       price: 150.00,
-      img: "src/images/aluguel.png",
+      img: "/images/aluguel.png",
     },
     {
       id: "aposentadoria",
@@ -258,7 +258,7 @@ export default function App(){
       <section id="presenteie" className="section bg-white">
         <div className="container">
           <h2 className="h2 mb-2">Presenteie o Casal</h2>
-          <p className="mb-8">Escolha um presente para Isabella e Antonio. Ao clicar, você poderá pagar via Pix (chave configurável) ou cartão (em breve).</p>
+          <p className="mb-8">Escolha um presente para Isabella e Antonio. Ao clicar, você poderá pagar via Pix ou cartão.</p>
 
           <div className="grid3 gap-6">
             {gifts.map(g => (
