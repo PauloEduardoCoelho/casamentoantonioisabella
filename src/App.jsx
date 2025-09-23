@@ -1,16 +1,12 @@
 import React from "react";
 
 export default function App(){
-  // =========================
-  // CONFIGURÁVEIS (edite aqui)
-  // =========================
   const COUPLE = "Isabella & Antonio";
-  const CEREMONY_DATE_ISO = "2025-12-13T10:00:00-03:00"; // 13/12/2025 10h (horário de Brasília)
+  const CEREMONY_DATE_ISO = "2025-12-13T10:00:00-03:00";
   const VENUE = "Espaço de Festas Quintal do Zé Alencar";
   const ADDRESS = "Tv. Maria Gomes - Madruga, Vassouras - RJ, 27700-000";
-  const PIX_KEY = ""; // quando tiver a chave (telefone/e-mail/copia-e-cola), preencha
+  const PIX_KEY = "";
 
-  // Cadastre presentes aqui:
   const gifts = [
     {
       id: "50",
@@ -28,66 +24,128 @@ export default function App(){
       id: "aposentadoria",
       title: "Ajuda para aposentadoria dos noivos",
       price: 190.00,
-      img: "src/images/aposentadoria.png",
+      img: "/images/aposentadoria.png",
     },
     {
       id: "ar",
       title: "Cofrinho para o casal comprar um ar-condicionado (e salvar o verão)",
       price: 250.00,
-      img: "src/images/ar.png",
+      img: "/images/ar.png",
     },
     {
       id: "boleto",
       title: "Adote um boleto vencido",
       price: 160.00,
-      img: "src/images/boleto.png",
+      img: "/images/boleto.png",
     },
     {
       id: "buffet",
       title: "Primeiro lugar na fila do buffet",
       price: 310.00,
-      img: "src/images/buffet.png",
+      img: "/images/buffet.png",
     },
     {
       id: "churrasco",
       title: "Contribuição para o kit churrasco do noivo (e da galera)",
       price: 230.00,
-      img: "src/images/churrasco.png",
+      img: "/images/churrasco.png",
     },
     {
       id: "delivery",
       title: "Fundo para o delivery quando ninguém quiser cozinhar",
       price: 180.00,
-      img: "src/images/delivery.png",
+      img: "/images/delivery.png",
     },
     {
       id: "deus",
       title: "Deus tocou no seu coração",
       price: 510.00,
-      img: "src/images/deus.png",
+      img: "/images/deus.png",
     },
     {
       id: "divina",
       title: "Se por uma intervenção divina você se sentir tocado",
       price: 1000.00,
-      img: "src/images/divina.png",
+      img: "/images/divina.png",
+    },
+    {
+      id: "filhos",
+      title: "Cota para perguntar quando vem os filhos",
+      price: 290.00,
+      img: "/images/filhos.png",
+    },
+    {
+      id: "lava",
+      title: "Kit lava e seca (porque a máquina não seca sozinha)",
+      price: 270.00,
+      img: "/images/lava.png",
+    },
+    {
+      id: "look",
+      title: "Amo vocês, mas gastei o dinheiro no look",
+      price: 70.00,
+      img: "/images/look.png",
+    },
+    {
+      id: "lua",
+      title: "Ajuda para os noivos pagarem a lua de mel",
+      price: 390.00,
+      img: "/images/lua.png",
+    },
+    {
+      id: "luz",
+      title: "Ajuda para o casal pagar a conta de luz do ar-condicionado no verão",
+      price: 210.00,
+      img: "/images/divina.png",
+    },
+    {
+      id: "nada",
+      title: "Só para não dizer que não dei nada",
+      price: 52.00,
+      img: "/images/nada.png",
+    },
+    {
+      id: "razao",
+      title: "Cobertor para o noivo estar coberto de razão",
+      price: 90.00,
+      img: "/images/razao.png",
+    },
+    {
+      id: "ronco",
+      title: "Kit tampão de ouvidos para a noiva não ouvir o ronco do noivo",
+      price: 70.00,
+      img: "/images/ronco.png",
+    },
+    {
+      id: "roupa",
+      title: "Ajuda para a noiva renovar o guarda-roupa do noivo (since 2015)",
+      price: 170.00,
+      img: "/images/roupa.png",
+    },
+    {
+      id: "shopee",
+      title: "Vale compras da Shopee para a noiva",
+      price: 110.00,
+      img: "/images/shopee.png",
+    },
+    {
+      id: "visita",
+      title: "Fundo emergencial para visitas inesperadas (Brincadeira)",
+      price: 130.00,
+      img: "/images/visita.png",
     },
   ];
-  // Para adicionar mais, copie um bloco acima, mude id/title/price/img.
 
-  // =========================
-  // Estado & funções
-  // =========================
   const [copied, setCopied] = React.useState(false);
   const [rsvpSent, setRsvpSent] = React.useState(false);
 
   const scrollToId = (id) => {
   const el = document.getElementById(id);
-  const headerHeight = document.querySelector(".navbar").offsetHeight; // Captura a altura do header
+  const headerHeight = document.querySelector(".navbar").offsetHeight;
   if (el) {
     window.scrollTo({
-      top: el.offsetTop - headerHeight, // Desloca o topo da seção levando em conta o header
-      behavior: "smooth", // Rolagem suave
+      top: el.offsetTop - headerHeight,
+      behavior: "smooth",
     });
   }
 };
@@ -97,7 +155,6 @@ export default function App(){
       alert("Defina a sua CHAVE PIX no topo do arquivo (const PIX_KEY) para habilitar este botão.");
       return;
     }
-    // Exemplo: copiar chave Pix + mensagem
     try{
       const msg = `${COUPLE} — Presente: ${gift.title} (R$ ${gift.price.toFixed(2)}) — CHAVE PIX: ${PIX_KEY}`;
       await navigator.clipboard.writeText(msg);
@@ -110,14 +167,12 @@ export default function App(){
   };
 
   const payCard = (gift) => {
-    // Placeholder: integração futura (ex.: Mercado Pago, PagSeguro, Stripe…)
     alert(`Pagamento por cartão em breve.\n\nPresente: ${gift.title} — R$ ${gift.price.toFixed(2)}`);
   };
 
   const onSubmitRSVP = async (e) => {
     e.preventDefault();
 
-    // Acessando os campos pelo name
     const nomeConvite = e.target.nomeConvite.value;
     const email = e.target.email.value;
     const telefone = e.target.telefone.value;
@@ -151,7 +206,6 @@ export default function App(){
     }
   };
 
-  // marca link ativo conforme a seção
   React.useEffect(() => {
     const ids = ["presenteie", "rsvp", "convite", "como-chegar"];
     const entries = ids.map((id) => ({
@@ -182,7 +236,6 @@ export default function App(){
     return () => obs.disconnect();
   }, []);
 
-  // Contador regressivo
   const [remaining, setRemaining] = React.useState(calcRemaining(CEREMONY_DATE_ISO));
   React.useEffect(()=>{
     const t = setInterval(()=> setRemaining(calcRemaining(CEREMONY_DATE_ISO)), 1000);
@@ -191,7 +244,6 @@ export default function App(){
 
   return (
     <div>
-      {/* NAVBAR */}
       <header className="navbar">
         <div className="navwrap">
           <button onClick={()=>scrollToId("convite")} className="brand" aria-label="Ir ao topo">
@@ -199,7 +251,6 @@ export default function App(){
             <span>{COUPLE}</span>
           </button>
 
-          {/* Toggle mobile */}
           <button
             className="nav-toggle"
             aria-label="Abrir menu"
@@ -211,7 +262,6 @@ export default function App(){
             <span></span>
           </button>
 
-          {/* Links */}
           <ul id="main-nav" className="nav">
             <li><button onClick={()=>scrollToId("presenteie")} className="nav-link">Presenteie o Casal</button></li>
             <li><button onClick={()=>scrollToId("rsvp")} className="nav-link">Confirme a Presença</button></li>
@@ -221,7 +271,6 @@ export default function App(){
         </div>
       </header>
 
-      {/* HERO / CONVITE */}
       <section id="convite" className="hero">
         <div className="container grid2 gap-6 section">
           <div>
@@ -233,7 +282,6 @@ export default function App(){
               conosco. Venha brindar, dançar e viver esse dia inesquecível.
             </p>
 
-            {/* Contador */}
             <div className="countdown" aria-label="Contagem regressiva">
               <CdBox n={remaining.days} label="dias" />
               <CdBox n={remaining.hours} label="horas" />
@@ -254,7 +302,6 @@ export default function App(){
         </div>
       </section>
 
-      {/* PRESENTES */}
       <section id="presenteie" className="section bg-white">
         <div className="container">
           <h2 className="h2 mb-2">Presenteie o Casal</h2>
@@ -282,7 +329,6 @@ export default function App(){
         </div>
       </section>
 
-      {/* RSVP */}
       <section id="rsvp" className="section">
         <div className="container narrow">
           <h2 className="h2 mb-2">Confirme a Presença</h2>
@@ -301,7 +347,7 @@ export default function App(){
               <label className="muted">E-mail
                 <input 
                   type="email" 
-                  name="email" // Adicionando o name correto
+                  name="email"
                   required 
                   className="input mt-1" 
                   placeholder="email@exemplo.com" 
@@ -311,7 +357,7 @@ export default function App(){
               <label className="muted">Telefone para contato
                 <input 
                   type="tel" 
-                  name="telefone" // Adicionando o name correto
+                  name="telefone"
                   required 
                   className="input mt-1" 
                   placeholder="(24) 99123-4567" 
@@ -321,7 +367,7 @@ export default function App(){
               <label className="muted">Quantidade de adultos incluindo você
                 <input 
                   type="number" 
-                  name="adultos" // Adicionando o name correto
+                  name="adultos"
                   min={0} 
                   defaultValue={0} 
                   className="input mt-1" 
@@ -331,7 +377,7 @@ export default function App(){
               <label className="muted">Quantidade de crianças
                 <input 
                   type="number" 
-                  name="criancas" // Adicionando o name correto
+                  name="criancas"
                   min={0} 
                   defaultValue={0} 
                   className="input mt-1" 
@@ -341,7 +387,7 @@ export default function App(){
               <label className="muted span2">Mensagem (opcional)
                 <textarea 
                   rows={4} 
-                  name="mensagem" // Adicionando o name correto
+                  name="mensagem"
                   className="textarea mt-1" 
                 />
               </label>
@@ -354,7 +400,6 @@ export default function App(){
         </div>
       </section>
 
-      {/* COMO CHEGAR */}
       <section id="como-chegar" className="section bg-white">
         <div className="container">
           <h2 className="h2 mb-2">Como Chegar</h2>
@@ -383,7 +428,6 @@ export default function App(){
         </div>
       </section>
 
-      {/* RODAPÉ (sem frase final extra) */}
       <footer className="footer">
         <div className="container row between">
           <p className="muted">© {new Date().getFullYear()} {COUPLE}</p>
@@ -394,16 +438,14 @@ export default function App(){
   );
 }
 
-/* ======== COMPONENTES ======== */
-
 function InvitationCard({ couple }) {
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
-    const headerHeight = document.querySelector(".navbar").offsetHeight; // Captura a altura do header
+    const headerHeight = document.querySelector(".navbar").offsetHeight;
     if (el) {
       window.scrollTo({
-        top: el.offsetTop - headerHeight, // Desloca o topo da seção levando em conta o header
-        behavior: "smooth", // Rolagem suave
+        top: el.offsetTop - headerHeight,
+        behavior: "smooth",
       });
     }
   };
@@ -466,7 +508,6 @@ function CdBox({n,label}){
   );
 }
 
-/* ======== HELPERS ======== */
 function calcRemaining(targetISO){
   const target = new Date(targetISO).getTime();
   const now = Date.now();
