@@ -211,21 +211,26 @@ export default function App(){
       return;
     }
 
-    const formData = new URLSearchParams();
-    formData.append("email", email);
-    formData.append("telefone", telefone);
-    formData.append("pessoas", String(peopleCount));
-    formData.append("nomes", JSON.stringify(nomesSan));
-    formData.append("mensagem", mensagem);
+    const payload = {
+      email,
+      telefone,
+      pessoas: peopleCount,
+      nomes: nomesSan,
+      mensagem,
+    };
 
     try {
+      console.log("RSVP payload:", payload);
+
       const response = await fetch(WEB_APP_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-        body: formData.toString(),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
 
       const result = await response.json();
+      console.log("RSVP response:", result);
+
       if (result.result === "success") {
         setRsvpSent(true);
       } else {
