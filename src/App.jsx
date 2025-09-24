@@ -5,7 +5,7 @@ export default function App(){
   const CEREMONY_DATE_ISO = "2025-12-13T10:00:00-03:00";
   const VENUE = "Espaço de Festas Quintal do Zé Alencar";
   const ADDRESS = "Tv. Maria Gomes - Madruga, Vassouras - RJ, 27700-000";
-  const PIX_KEY = "";
+  const PIX_KEY = "185.848.267-42";
 
   const gifts = [
     {
