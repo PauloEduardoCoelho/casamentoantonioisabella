@@ -158,6 +158,27 @@ export default function App(){
     }
   };
 
+  const payPix = async (gift) => {
+    if (gift?.pix?.payload || gift?.pix?.qrImg || gift?.pix?.key) {
+      setPixGift(gift);
+      setPixOpen(true);
+      return;
+    }
+    if (!PIX_KEY) {
+      alert("Defina a CHAVE PIX (PIX_KEY) ou cadastre o objeto 'pix' no presente.");
+      return;
+    }
+    try {
+      const msg = `${COUPLE} — Presente: ${gift.title} (R$ ${gift.price.toFixed(2)}) — CHAVE PIX: ${PIX_KEY}`;
+      await navigator.clipboard.writeText(msg);
+      setCopied(true);
+      setTimeout(()=>setCopied(false), 2000);
+      alert("Chave PIX copiada! Cole no app do seu banco para concluir o pagamento.");
+    } catch (e) {
+      alert(`Chave PIX: ${PIX_KEY}\n\nPresente: ${gift.title} — R$ ${gift.price.toFixed(2)}`);
+    }
+  };
+
   const payCard = (gift) => {
     alert(`Pagamento por cartão em breve.\n\nPresente: ${gift.title} — R$ ${gift.price.toFixed(2)}`);
   };
