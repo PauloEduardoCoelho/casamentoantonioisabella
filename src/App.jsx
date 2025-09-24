@@ -197,50 +197,54 @@ export default function App(){
     alert(`Pagamento por cartão em breve.\n\nPresente: ${gift.title} — R$ ${gift.price.toFixed(2)}`);
   };
 
-  const onSubmitRSVP = async (e) => {
-    e.preventDefault();
+const onSubmitRSVP = async (e) => {
+  e.preventDefault();
 
-    const email = e.target.email.value;
-    const telefone = e.target.telefone.value;
-    const mensagem = e.target.mensagem.value;
+  const email = e.target.email.value;
+  const telefone = e.target.telefone.value;
+  const mensagem = e.target.mensagem.value;
 
-    const nomesSan = names.map(n => (n || "").trim()).filter(Boolean);
+  const nomesSan = names.map(n => (n || "").trim()).filter(Boolean);
+  if (nomesSan.length !== peopleCount) {
+    alert(`Por favor, preencha os ${peopleCount} nome(s).`);
+    return;
+  }
 
-    if (nomesSan.length !== peopleCount) {
-      alert(`Por favor, preencha os ${peopleCount} nome(s).`);
-      return;
+  const formData = new URLSearchParams();
+  formData.append("email", email);
+  formData.append("telefone", telefone);
+  formData.append("pessoas", String(peopleCount));
+  formData.append("nomes", JSON.stringify(nomesSan));
+  formData.append("mensagem", mensagem);
+
+  try {
+    const response = await fetch(WEB_APP_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: formData.toString(),
+      redirect: "follow",
+    });
+
+    let ok = false;
+    try {
+      const result = await response.json();
+      ok = result?.result === "success";
+    } catch {
+      ok = response.ok;
     }
 
-    const payload = {
-      email,
-      telefone,
-      pessoas: peopleCount,
-      nomes: nomesSan,
-      mensagem,
-    };
-
-    try {
-      console.log("RSVP payload:", payload);
-
-      const response = await fetch(WEB_APP_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-      console.log("RSVP response:", result);
-
-      if (result.result === "success") {
-        setRsvpSent(true);
-      } else {
-        alert("Erro ao enviar os dados.");
-      }
-    } catch (error) {
-      console.error("Erro ao enviar os dados:", error);
+    if (ok) {
+      setRsvpSent(true);
+    } else {
       alert("Erro ao enviar os dados.");
     }
-  };
+  } catch (error) {
+    console.error("Erro ao enviar os dados:", error);
+    alert("Erro ao enviar os dados.");
+  }
+};
 
 
   React.useEffect(() => {
