@@ -13,6 +13,11 @@ export default function App(){
       title: "Toma aqui uns 50,00",
       price: 50.00,
       img: "/images/50.png",
+      pix: {
+        qrImg: "/images/qrcode_50.png",
+        payload: "00020126580014BR.GOV.BCB.PIX013659b498d9-b3e5-4f7c-bc1c-dda426313674520400005303986540550.005802BR5925Paulo Eduardo Fernandes d6009SAO PAULO62140510Spc8jVS2KC63045FEA",
+        key: "59b498d9-b3e5-4f7c-bc1c-dda426313674",
+      },
     },
     {
       id: "aluguel",
@@ -139,29 +144,39 @@ export default function App(){
   const [copied, setCopied] = React.useState(false);
   const [rsvpSent, setRsvpSent] = React.useState(false);
 
-  const scrollToId = (id) => {
-  const el = document.getElementById(id);
-  const headerHeight = document.querySelector(".navbar").offsetHeight;
-  if (el) {
-    window.scrollTo({
-      top: el.offsetTop - headerHeight,
-      behavior: "smooth",
-    });
-  }
-};
+  // ⤵️ estado do modal PIX
+  const [pixOpen, setPixOpen] = React.useState(false);
+  const [pixGift, setPixGift] = React.useState(null);
 
+  const scrollToId = (id) => {
+    const el = document.getElementById(id);
+    const headerHeight = document.querySelector(".navbar").offsetHeight;
+    if (el) {
+      window.scrollTo({
+        top: el.offsetTop - headerHeight,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  // Abre o modal se o presente tiver dados PIX; senão, copia um texto simples com a PIX_KEY global
   const payPix = async (gift) => {
-    if (!PIX_KEY) {
-      alert("Defina a sua CHAVE PIX no topo do arquivo (const PIX_KEY) para habilitar este botão.");
+    if (gift?.pix?.payload || gift?.pix?.qrImg || gift?.pix?.key) {
+      setPixGift(gift);
+      setPixOpen(true);
       return;
     }
-    try{
+    if (!PIX_KEY) {
+      alert("Defina a CHAVE PIX (PIX_KEY) ou cadastre o objeto 'pix' no presente.");
+      return;
+    }
+    try {
       const msg = `${COUPLE} — Presente: ${gift.title} (R$ ${gift.price.toFixed(2)}) — CHAVE PIX: ${PIX_KEY}`;
       await navigator.clipboard.writeText(msg);
       setCopied(true);
       setTimeout(()=>setCopied(false), 2000);
       alert("Chave PIX copiada! Cole no app do seu banco para concluir o pagamento.");
-    }catch(e){
+    } catch (e) {
       alert(`Chave PIX: ${PIX_KEY}\n\nPresente: ${gift.title} — R$ ${gift.price.toFixed(2)}`);
     }
   };
@@ -244,6 +259,15 @@ export default function App(){
 
   return (
     <div>
+      {/* Modal PIX */}
+      {pixOpen && (
+        <PixModal
+          gift={pixGift}
+          couple={COUPLE}
+          onClose={()=>{ setPixOpen(false); setPixGift(null); }}
+        />
+      )}
+
       <header className="navbar">
         <div className="navwrap">
           <button onClick={()=>scrollToId("convite")} className="brand" aria-label="Ir ao topo">
@@ -434,6 +458,109 @@ export default function App(){
           <p className="muted"></p>
         </div>
       </footer>
+    </div>
+  );
+}
+
+// ============== Modal PIX ==============
+function PixModal({ gift, couple, onClose }){
+  const payload = gift?.pix?.payload || "";
+  const pixKey  = gift?.pix?.key || "";
+  const qrImg   = gift?.pix?.qrImg || "";
+
+  const copy = async (text) => {
+    try{
+      await navigator.clipboard.writeText(text);
+      alert("Copiado!");
+    }catch(e){
+      // fallback simples
+      const ok = window.confirm("Não foi possível copiar automaticamente.\n\nDeseja ver o texto para copiar manualmente?");
+      if(ok) prompt("Selecione e copie:", text);
+    }
+  };
+
+  React.useEffect(()=>{
+    const onEsc = (e)=> e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onEsc);
+    return ()=> document.removeEventListener("keydown", onEsc);
+  }, [onClose]);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Pagamento via Pix"
+      className="pix-modal-overlay"
+      onClick={(e)=>{ if(e.target.classList.contains("pix-modal-overlay")) onClose(); }}
+      style={{
+        position:"fixed", inset:0, background:"rgba(0,0,0,.45)",
+        display:"flex", alignItems:"center", justifyContent:"center", zIndex:1000
+      }}
+    >
+      <div className="pix-modal"
+           style={{background:"#fff", borderRadius:12, padding:24, width:"min(720px, 92vw)", boxShadow:"0 10px 30px rgba(0,0,0,.25)", maxHeight:"90vh", overflow:"auto"}}
+      >
+        <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12}}>
+          <h3 style={{margin:0}}>Pagar com Pix — {gift?.title}</h3>
+          <button className="btn btn-ghost" onClick={onClose} aria-label="Fechar">Fechar</button>
+        </div>
+
+        {/* Grid de 2 colunas: QR à esquerda, informações à direita */}
+        <div style={{display:"grid", gridTemplateColumns:"1fr 1.2fr", gap:16}}>
+          <div>
+            <div className="card" style={{textAlign:"center", padding:16}}>
+              {qrImg ? (
+                <img
+                  src={qrImg}
+                  alt="QR Code Pix"
+                  style={{width:"100%", maxWidth:320, margin:"0 auto", display:"block", borderRadius:8}}
+                />
+              ) : (
+                <p className="muted">Sem imagem de QR cadastrada para este presente.</p>
+              )}
+              <p style={{marginTop:12, fontSize:12}} className="muted">
+                Aponte a câmera do seu banco para o QR Code
+              </p>
+            </div>
+          </div>
+
+          <div style={{display:"grid", gap:12}}>
+            <div className="card" style={{padding:16}}>
+              <strong>Pix Copia e Cola</strong>
+              <textarea
+                readOnly
+                value={payload}
+                rows={5}
+                style={{width:"100%", marginTop:8, fontFamily:"monospace"}}
+              />
+              <div className="row gap-2" style={{marginTop:8}}>
+                <button className="btn btn-primary" onClick={()=>copy(payload)}>Copiar código</button>
+              </div>
+            </div>
+
+            <div className="card" style={{padding:16}}>
+              <strong>Chave Pix</strong>
+              <div style={{marginTop:8, wordBreak:"break-all"}}>
+                {pixKey || "—"}
+              </div>
+              <div className="row gap-2" style={{marginTop:8}}>
+                <button className="btn btn-ghost" onClick={()=>copy(pixKey)}>Copiar chave</button>
+              </div>
+            </div>
+
+            <div className="card" style={{padding:16}}>
+              <strong>Resumo</strong>
+              <p className="muted" style={{marginTop:6}}>
+                {couple} — Presente: {gift?.title} — Valor: R$ {gift?.price?.toFixed(2)}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p className="muted" style={{fontSize:12, marginTop:12}}>
+          Dica: se o banco pedir, cole o <em>Pix Copia e Cola</em> completo.
+        </p>
+      </div>
     </div>
   );
 }
