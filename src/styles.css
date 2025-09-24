@@ -374,3 +374,26 @@ p{line-height:1.6; color:#4a4a4a; margin:.25rem 0 1rem}
   }
 }
 
+@media (max-width: 768px) {
+  .hero .grid2 {
+    justify-items: center;
+  }
+  .hero .grid2 > div:first-child {
+    justify-self: center;
+    width: min(92vw, 640px);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .hero .title,
+  .hero .lead {
+    text-align: center;
+  }
+  .hero .countdown { 
+    justify-content: center; 
+  }
+  .hero .row { 
+    justify-content: center; 
+  }
+}
