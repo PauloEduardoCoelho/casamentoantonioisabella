@@ -6,6 +6,8 @@ export default function App(){
   const VENUE = "Espaço de Festas Quintal do Zé Alencar";
   const ADDRESS = "Tv. Maria Gomes - Madruga, Vassouras - RJ, 27700-000";
   const PIX_KEY = "185.848.267-42";
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwaLVG-c7xQhGRsHPukpVkbdVKNY8Tugilb2iTfn3emmNoi4qI8tA_NVaBY__d8K64/exec";
+
 
   const gifts = [
     {
@@ -216,18 +218,10 @@ export default function App(){
     formData.append("nomes", JSON.stringify(nomesSan));
     formData.append("mensagem", mensagem);
 
-    await fetch(WEB_APP_URL, {
-      method: "POST",
-      headers: { "Content-Type": "https://script.google.com/macros/s/AKfycbwaLVG-c7xQhGRsHPukpVkbdVKNY8Tugilb2iTfn3emmNoi4qI8tA_NVaBY__d8K64/exec" },
-      body: formData.toString(),
-    });
-
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbwaLVG-c7xQhGRsHPukpVkbdVKNY8Tugilb2iTfn3emmNoi4qI8tA_NVaBY__d8K64/exec", {
+      const response = await fetch(WEB_APP_URL, {
         method: "POST",
-        headers: {
-          "Content-Type": "https://script.google.com/macros/s/AKfycbwaLVG-c7xQhGRsHPukpVkbdVKNY8Tugilb2iTfn3emmNoi4qI8tA_NVaBY__d8K64/exec",
-        },
+        headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
         body: formData.toString(),
       });
 
@@ -242,6 +236,7 @@ export default function App(){
       alert("Erro ao enviar os dados.");
     }
   };
+
 
   React.useEffect(() => {
     const ids = ["presenteie", "rsvp", "convite", "como-chegar"];
