@@ -496,70 +496,69 @@ function PixModal({ gift, couple, onClose }){
       }}
     >
       <div className="pix-modal"
-           style={{background:"#fff", borderRadius:12, padding:24, width:"min(720px, 92vw)", boxShadow:"0 10px 30px rgba(0,0,0,.25)", maxHeight:"90vh", overflow:"auto"}}
-      >
-        <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12}}>
-          <h3 style={{margin:0}}>Pagar com Pix — {gift?.title}</h3>
-          <button className="btn btn-ghost" onClick={onClose} aria-label="Fechar">Fechar</button>
+     style={{background:"#fff", borderRadius:12, padding:24, width:"min(720px, 92vw)", boxShadow:"0 10px 30px rgba(0,0,0,.25)", maxHeight:"90vh", overflow:"auto"}}
+>
+  <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12}}>
+    <h3 style={{margin:0}}>Pagar com Pix — {gift?.title}</h3>
+    <button className="btn btn-ghost" onClick={onClose} aria-label="Fechar">Fechar</button>
+  </div>
+
+  <div className="pix-modal-grid">
+      <div>
+        <div className="card pix-card" style={{textAlign:"center"}}>
+          {qrImg ? (
+            <img
+              src={qrImg}
+              alt="QR Code Pix"
+              className="pix-qr-img"
+            />
+          ) : (
+            <p className="muted">Sem imagem de QR cadastrada para este presente.</p>
+          )}
+          <p style={{marginTop:12, fontSize:12}} className="muted">
+            Aponte a câmera do seu banco para o QR Code
+          </p>
         </div>
+      </div>
 
-        {/* Grid de 2 colunas: QR à esquerda, informações à direita */}
-        <div style={{display:"grid", gridTemplateColumns:"1fr 1.2fr", gap:16}}>
-          <div>
-            <div className="card" style={{textAlign:"center", padding:16}}>
-              {qrImg ? (
-                <img
-                  src={qrImg}
-                  alt="QR Code Pix"
-                  style={{width:"100%", maxWidth:320, margin:"0 auto", display:"block", borderRadius:8}}
-                />
-              ) : (
-                <p className="muted">Sem imagem de QR cadastrada para este presente.</p>
-              )}
-              <p style={{marginTop:12, fontSize:12}} className="muted">
-                Aponte a câmera do seu banco para o QR Code
-              </p>
-            </div>
-          </div>
-
-          <div style={{display:"grid", gap:12}}>
-            <div className="card" style={{padding:16}}>
-              <strong>Pix Copia e Cola</strong>
-              <textarea
-                readOnly
-                value={payload}
-                rows={5}
-                style={{width:"100%", marginTop:8, fontFamily:"monospace"}}
-              />
-              <div className="row gap-2" style={{marginTop:8}}>
-                <button className="btn btn-primary" onClick={()=>copy(payload)}>Copiar código</button>
-              </div>
-            </div>
-
-            <div className="card" style={{padding:16}}>
-              <strong>Chave Pix</strong>
-              <div style={{marginTop:8, wordBreak:"break-all"}}>
-                {pixKey || "—"}
-              </div>
-              <div className="row gap-2" style={{marginTop:8}}>
-                <button className="btn btn-ghost" onClick={()=>copy(pixKey)}>Copiar chave</button>
-              </div>
-            </div>
-
-            <div className="card" style={{padding:16}}>
-              <strong>Resumo</strong>
-              <p className="muted" style={{marginTop:6}}>
-                {couple} — Presente: {gift?.title} — Valor: R$ {gift?.price?.toFixed(2)}
-              </p>
-            </div>
+      <div style={{display:"grid", gap:12}}>
+        <div className="card pix-card">
+          <strong>Pix Copia e Cola</strong>
+          <textarea
+            readOnly
+            value={payload}
+            rows={5}
+            style={{width:"100%", marginTop:8, fontFamily:"monospace"}}
+          />
+          <div className="pix-modal-actions">
+            <button className="btn btn-primary" onClick={()=>copy(payload)}>Copiar código</button>
           </div>
         </div>
 
-        <p className="muted" style={{fontSize:12, marginTop:12}}>
-          Dica: se o banco pedir, cole o <em>Pix Copia e Cola</em> completo.
-        </p>
+        <div className="card pix-card">
+          <strong>Chave Pix</strong>
+          <div style={{marginTop:8, wordBreak:"break-all"}}>
+            {pixKey || "—"}
+          </div>
+          <div className="pix-modal-actions">
+            <button className="btn btn-ghost" onClick={()=>copy(pixKey)}>Copiar chave</button>
+          </div>
+        </div>
+
+        <div className="card pix-card">
+          <strong>Resumo</strong>
+          <p className="muted" style={{marginTop:6}}>
+            {couple} — Presente: {gift?.title} — Valor: R$ {gift?.price?.toFixed(2)}
+          </p>
+        </div>
       </div>
     </div>
+
+    <p className="muted" style={{fontSize:12, marginTop:12}}>
+      Dica: se o banco pedir, cole o <em>Pix Copia e Cola</em> completo.
+    </p>
+  </div>
+</div>
   );
 }
 
