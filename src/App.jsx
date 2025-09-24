@@ -144,6 +144,18 @@ export default function App(){
   const [copied, setCopied] = React.useState(false);
   const [rsvpSent, setRsvpSent] = React.useState(false);
 
+  const [peopleCount, setPeopleCount] = React.useState(1);
+  const [names, setNames] = React.useState([""]);
+
+  const setNameAt = (idx, value) => {
+    setNames((prev) => {
+      const next = [...prev];
+      next[idx] = value;
+      return next;
+    });
+  };
+
+
   const [pixOpen, setPixOpen] = React.useState(false);
   const [pixGift, setPixGift] = React.useState(null);
 
@@ -186,19 +198,22 @@ export default function App(){
   const onSubmitRSVP = async (e) => {
     e.preventDefault();
 
-    const nomeConvite = e.target.nomeConvite.value;
     const email = e.target.email.value;
     const telefone = e.target.telefone.value;
-    const adultos = e.target.adultos.value;
-    const criancas = e.target.criancas.value;
     const mensagem = e.target.mensagem.value;
 
+    const nomesSan = names.map(n => (n || "").trim()).filter(Boolean);
+
+    if (nomesSan.length !== peopleCount) {
+      alert(`Por favor, preencha os ${peopleCount} nome(s).`);
+      return;
+    }
+
     const formData = new URLSearchParams();
-    formData.append("nomeConvite", nomeConvite);
     formData.append("email", email);
     formData.append("telefone", telefone);
-    formData.append("adultos", adultos);
-    formData.append("criancas", criancas);
+    formData.append("pessoas", String(peopleCount));
+    formData.append("nomes", JSON.stringify(nomesSan));
     formData.append("mensagem", mensagem);
 
     try {
@@ -362,10 +377,6 @@ export default function App(){
             </div>
           ) : (
             <form onSubmit={onSubmitRSVP} className="grid2 gap-4">
-              <label className="muted span2">Nome do convite (Ex.: Tia Ana e Família)
-                <input name="nomeConvite" required className="input mt-1" />
-              </label>
-
               <label className="muted">E-mail
                 <input 
                   type="email" 
@@ -385,27 +396,43 @@ export default function App(){
                   placeholder="(24) 99123-4567" 
                 />
               </label>
-              
-              <label className="muted">Quantidade de adultos incluindo você
-                <input 
-                  type="number" 
-                  name="adultos"
-                  min={0} 
-                  defaultValue={0} 
-                  className="input mt-1" 
+
+              <label className="muted">
+                Quantidade de pessoas
+                <input
+                  type="number"
+                  min={1}
+                  value={peopleCount}
+                  onChange={(e) => {
+                    const n = Math.max(1, Number(e.target.value || 1));
+                    setPeopleCount(n);
+                    setNames((prev) => {
+                      const copy = [...prev];
+                      copy.length = n;
+                      for (let i = 0; i < n; i++) if (copy[i] == null) copy[i] = "";
+                      return copy;
+                    });
+                  }}
+                  className="input mt-1"
                 />
               </label>
-              
-              <label className="muted">Quantidade de crianças
-                <input 
-                  type="number" 
-                  name="criancas"
-                  min={0} 
-                  defaultValue={0} 
-                  className="input mt-1" 
-                />
-              </label>
-              
+
+              <div className="span2" />
+
+              <div className="span2" style={{display:"grid", gridTemplateColumns:"1fr", gap:"0.75rem"}}>
+                {Array.from({ length: peopleCount }).map((_, idx) => (
+                  <label key={idx} className="muted">
+                    Nome da pessoa {idx + 1}
+                    <input
+                      className="input mt-1"
+                      value={names[idx] || ""}
+                      onChange={(e) => setNameAt(idx, e.target.value)}
+                      required
+                    />
+                  </label>
+                ))}
+              </div>
+
               <label className="muted span2">Mensagem (opcional)
                 <textarea 
                   rows={4} 
@@ -460,7 +487,6 @@ export default function App(){
   );
 }
 
-// ============== Modal PIX ==============
 function PixModal({ gift, couple, onClose }){
   const payload = gift?.pix?.payload || "";
   const pixKey  = gift?.pix?.key || "";
@@ -471,7 +497,6 @@ function PixModal({ gift, couple, onClose }){
       await navigator.clipboard.writeText(text);
       alert("Copiado!");
     }catch(e){
-      // fallback simples
       const ok = window.confirm("Não foi possível copiar automaticamente.\n\nDeseja ver o texto para copiar manualmente?");
       if(ok) prompt("Selecione e copie:", text);
     }
