@@ -324,3 +324,33 @@ p{line-height:1.6; color:#4a4a4a; margin:.25rem 0 1rem}
   gap: 8px;
   flex-wrap: wrap;
 }
+
+@media (max-width: 768px) {
+  .hero .container {
+    padding-inline: 1.25rem;
+  }
+
+  .hero .grid2 {
+    justify-items: center;
+  }
+  .hero .grid2 > div {
+    width: min(92vw, 640px);
+    margin-inline: auto;
+  }
+
+  .hero .title,
+  .hero .lead {
+    text-align: center;
+  }
+  .hero .countdown {
+    justify-content: center;
+  }
+  .hero .row {
+    justify-content: center;
+  }
+
+  .card-hero {
+    width: min(92vw, 640px);
+    margin-inline: auto;
+  }
+}
