@@ -216,6 +216,12 @@ export default function App(){
     formData.append("nomes", JSON.stringify(nomesSan));
     formData.append("mensagem", mensagem);
 
+    await fetch(WEB_APP_URL, {
+      method: "POST",
+      headers: { "Content-Type": "https://script.google.com/macros/s/AKfycbwaLVG-c7xQhGRsHPukpVkbdVKNY8Tugilb2iTfn3emmNoi4qI8tA_NVaBY__d8K64/exec" },
+      body: formData.toString(),
+    });
+
     try {
       const response = await fetch("https://script.google.com/macros/s/AKfycbwaLVG-c7xQhGRsHPukpVkbdVKNY8Tugilb2iTfn3emmNoi4qI8tA_NVaBY__d8K64/exec", {
         method: "POST",
