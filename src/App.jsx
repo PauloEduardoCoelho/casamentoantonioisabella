@@ -143,8 +143,11 @@ export default function App(){
     },
   ];
 
-  const [copied, setCopied] = React.useState(false);
+ const [copied, setCopied] = React.useState(false);
   const [rsvpSent, setRsvpSent] = React.useState(false);
+
+  const [giftListOpen, setGiftListOpen] = React.useState(false);
+  const [giftOptGift, setGiftOptGift] = React.useState(null);
 
   const [peopleCount, setPeopleCount] = React.useState(1);
   const [names, setNames] = React.useState([""]);
@@ -156,7 +159,6 @@ export default function App(){
       return next;
     });
   };
-
 
   const [pixOpen, setPixOpen] = React.useState(false);
   const [pixGift, setPixGift] = React.useState(null);
@@ -216,7 +218,7 @@ export default function App(){
     formData.append("mensagem", mensagem);
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbwaLVG-c7xQhGRsHPukpVkbdVKNY8Tugilb2iTfn3emmNoi4qI8tA_NVaBY__d8K64/exec", {
+      const response = await fetch(WEB_APP_URL, {
         method: "POST",
         body: formData,
       });
@@ -224,6 +226,7 @@ export default function App(){
       const result = await response.json();
       if (result.result === "success") {
         setRsvpSent(true);
+        setGiftListOpen(true);
       } else {
         alert("Erro ao enviar os dados.");
       }
@@ -232,7 +235,6 @@ export default function App(){
       alert("Erro ao enviar os dados.");
     }
   };
-
 
   React.useEffect(() => {
     const ids = ["presenteie", "rsvp", "convite", "como-chegar"];
@@ -272,12 +274,29 @@ export default function App(){
 
   return (
     <div>
-      {/* Modal PIX */}
+      {/* Modal PIX (existente) */}
       {pixOpen && (
         <PixModal
           gift={pixGift}
           couple={COUPLE}
           onClose={()=>{ setPixOpen(false); setPixGift(null); }}
+        />
+      )}
+
+      {giftListOpen && (
+        <GiftListModal
+          gifts={gifts}
+          onClose={()=>setGiftListOpen(false)}
+          onChoose={(g)=>{ setGiftOptGift(g); setGiftListOpen(false); }}
+        />
+      )}
+
+      {giftOptGift && (
+        <GiftOptionsModal
+          gift={giftOptGift}
+          onClose={()=>setGiftOptGift(null)}
+          onPix={()=>{ payPix(giftOptGift); setGiftOptGift(null); }}
+          onCard={()=>{ payCard(giftOptGift); }}
         />
       )}
 
@@ -352,11 +371,11 @@ export default function App(){
                   <h3 className="gift-title">{g.title}</h3>
                   <p className="gift-price">R$ {g.price.toFixed(2)}</p>
                   <div className="gift-actions">
-                    <button className="btn btn-primary" onClick={()=>payPix(g)}>
-                      Pagar com Pix {copied ? "✓" : ""}
-                    </button>
-                    <button className="btn btn-ghost" onClick={()=>payCard(g)}>
-                      Pagar com Cartão
+                    <button
+                      className="btn btn-primary"
+                      onClick={()=>setGiftOptGift(g)}
+                    >
+                      Presentear
                     </button>
                   </div>
                 </div>
@@ -475,6 +494,88 @@ export default function App(){
   );
 }
 
+function GiftOptionsModal({ gift, onClose, onPix, onCard }) {
+  React.useEffect(()=>{
+    const onEsc = (e)=> e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onEsc);
+    return ()=> document.removeEventListener("keydown", onEsc);
+  }, [onClose]);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Escolher forma de pagamento"
+      className="pix-modal-overlay"
+      onClick={(e)=>{ if(e.target.classList.contains("pix-modal-overlay")) onClose(); }}
+      style={{position:"fixed", inset:0, background:"rgba(0,0,0,.45)", display:"flex", alignItems:"center", justifyContent:"center", zIndex:1000}}
+    >
+      <div className="pix-modal" style={{background:"#fff", borderRadius:12, padding:24, width:"min(560px, 92vw)", boxShadow:"0 10px 30px rgba(0,0,0,.25)"}}>
+        <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12}}>
+          <h3 style={{margin:0}}>Presentear — {gift?.title}</h3>
+          <button className="btn btn-ghost" onClick={onClose} aria-label="Fechar">Fechar</button>
+        </div>
+
+        <div className="row gap-3" style={{marginTop:8}}>
+          <button className="btn btn-primary" onClick={onPix}>Pagar com Pix</button>
+          <button className="btn btn-ghost" onClick={onCard}>Pagar com Cartão</button>
+        </div>
+
+        <div className="card" style={{marginTop:16}}>
+          <div className="row gap-2" style={{alignItems:"center"}}>
+            <img src={gift?.img} alt="" style={{width:64, height:64, objectFit:"cover", borderRadius:8}} />
+            <div>
+              <div style={{fontWeight:600}}>{gift?.title}</div>
+              <div className="muted">Valor: R$ {gift?.price?.toFixed(2)}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function GiftListModal({ gifts, onClose, onChoose }) {
+  React.useEffect(()=>{
+    const onEsc = (e)=> e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onEsc);
+    return ()=> document.removeEventListener("keydown", onEsc);
+  }, [onClose]);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Lista de presentes"
+      className="pix-modal-overlay"
+      onClick={(e)=>{ if(e.target.classList.contains("pix-modal-overlay")) onClose(); }}
+      style={{position:"fixed", inset:0, background:"rgba(0,0,0,.45)", display:"flex", alignItems:"center", justifyContent:"center", zIndex:1000}}
+    >
+      <div className="pix-modal" style={{background:"#fff", borderRadius:12, padding:24, width:"min(900px, 95vw)", maxHeight:"90vh", overflow:"auto", boxShadow:"0 10px 30px rgba(0,0,0,.25)"}}>
+        <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12}}>
+          <h3 style={{margin:0}}>Escolha um presente</h3>
+          <button className="btn btn-ghost" onClick={onClose} aria-label="Fechar">Fechar</button>
+        </div>
+
+        <div className="grid3 gap-6">
+          {gifts.map(g => (
+            <article key={g.id} className="gift-card">
+              <img className="gift-media" src={g.img} alt={g.title} loading="lazy" />
+              <div className="gift-body">
+                <h4 className="gift-title">{g.title}</h4>
+                <p className="gift-price">R$ {g.price.toFixed(2)}</p>
+                <div className="gift-actions">
+                  <button className="btn btn-primary" onClick={()=>onChoose(g)}>Presentear</button>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function PixModal({ gift, couple, onClose }){
   const payload = gift?.pix?.payload || "";
   const pixKey  = gift?.pix?.key || "";
@@ -509,69 +610,69 @@ function PixModal({ gift, couple, onClose }){
       }}
     >
       <div className="pix-modal"
-     style={{background:"#fff", borderRadius:12, padding:24, width:"min(720px, 92vw)", boxShadow:"0 10px 30px rgba(0,0,0,.25)", maxHeight:"90vh", overflow:"auto"}}
->
-  <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12}}>
-    <h3 style={{margin:0}}>Pagar com Pix — {gift?.title}</h3>
-    <button className="btn btn-ghost" onClick={onClose} aria-label="Fechar">Fechar</button>
-  </div>
-
-  <div className="pix-modal-grid">
-      <div>
-        <div className="card pix-card" style={{textAlign:"center"}}>
-          {qrImg ? (
-            <img
-              src={qrImg}
-              alt="QR Code Pix"
-              className="pix-qr-img"
-            />
-          ) : (
-            <p className="muted">Sem imagem de QR cadastrada para este presente.</p>
-          )}
-          <p style={{marginTop:12, fontSize:12}} className="muted">
-            Aponte a câmera do seu banco para o QR Code
-          </p>
+        style={{background:"#fff", borderRadius:12, padding:24, width:"min(720px, 92vw)", boxShadow:"0 10px 30px rgba(0,0,0,.25)", maxHeight:"90vh", overflow:"auto"}}
+      >
+        <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12}}>
+          <h3 style={{margin:0}}>Pagar com Pix — {gift?.title}</h3>
+          <button className="btn btn-ghost" onClick={onClose} aria-label="Fechar">Fechar</button>
         </div>
-      </div>
 
-      <div style={{display:"grid", gap:12}}>
-        <div className="card pix-card">
-          <strong>Pix Copia e Cola</strong>
-          <textarea
-            readOnly
-            value={payload}
-            rows={5}
-            style={{width:"100%", marginTop:8, fontFamily:"monospace"}}
-          />
-          <div className="pix-modal-actions">
-            <button className="btn btn-primary" onClick={()=>copy(payload)}>Copiar código</button>
+        <div className="pix-modal-grid">
+          <div>
+            <div className="card pix-card" style={{textAlign:"center"}}>
+              {qrImg ? (
+                <img
+                  src={qrImg}
+                  alt="QR Code Pix"
+                  className="pix-qr-img"
+                />
+              ) : (
+                <p className="muted">Sem imagem de QR cadastrada para este presente.</p>
+              )}
+              <p style={{marginTop:12, fontSize:12}} className="muted">
+                Aponte a câmera do seu banco para o QR Code
+              </p>
+            </div>
+          </div>
+
+          <div style={{display:"grid", gap:12}}>
+            <div className="card pix-card">
+              <strong>Pix Copia e Cola</strong>
+              <textarea
+                readOnly
+                value={payload}
+                rows={5}
+                style={{width:"100%", marginTop:8, fontFamily:"monospace"}}
+              />
+              <div className="pix-modal-actions">
+                <button className="btn btn-primary" onClick={()=>copy(payload)}>Copiar código</button>
+              </div>
+            </div>
+
+            <div className="card pix-card">
+              <strong>Chave Pix</strong>
+              <div style={{marginTop:8, wordBreak:"break-all"}}>
+                {pixKey || "—"}
+              </div>
+              <div className="pix-modal-actions">
+                <button className="btn btn-ghost" onClick={()=>copy(pixKey)}>Copiar chave</button>
+              </div>
+            </div>
+
+            <div className="card pix-card">
+              <strong>Resumo</strong>
+              <p className="muted" style={{marginTop:6}}>
+                {couple} — Presente: {gift?.title} — Valor: R$ {gift?.price?.toFixed(2)}
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="card pix-card">
-          <strong>Chave Pix</strong>
-          <div style={{marginTop:8, wordBreak:"break-all"}}>
-            {pixKey || "—"}
-          </div>
-          <div className="pix-modal-actions">
-            <button className="btn btn-ghost" onClick={()=>copy(pixKey)}>Copiar chave</button>
-          </div>
-        </div>
-
-        <div className="card pix-card">
-          <strong>Resumo</strong>
-          <p className="muted" style={{marginTop:6}}>
-            {couple} — Presente: {gift?.title} — Valor: R$ {gift?.price?.toFixed(2)}
-          </p>
-        </div>
+        <p className="muted" style={{fontSize:12, marginTop:12}}>
+          Dica: se o banco pedir, cole o <em>Pix Copia e Cola</em> completo.
+        </p>
       </div>
     </div>
-
-    <p className="muted" style={{fontSize:12, marginTop:12}}>
-      Dica: se o banco pedir, cole o <em>Pix Copia e Cola</em> completo.
-    </p>
-  </div>
-</div>
   );
 }
 
