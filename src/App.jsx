@@ -197,54 +197,42 @@ export default function App(){
     alert(`Pagamento por cartão em breve.\n\nPresente: ${gift.title} — R$ ${gift.price.toFixed(2)}`);
   };
 
-const onSubmitRSVP = async (e) => {
-  e.preventDefault();
+  const onSubmitRSVP = async (e) => {
+    e.preventDefault();
 
-  const email = e.target.email.value;
-  const telefone = e.target.telefone.value;
-  const mensagem = e.target.mensagem.value;
+    const nomeConvite = e.target.nomeConvite.value;
+    const email = e.target.email.value;
+    const telefone = e.target.telefone.value;
+    const adultos = e.target.adultos.value;
+    const criancas = e.target.criancas.value;
+    const mensagem = e.target.mensagem.value;
 
-  const nomesSan = names.map(n => (n || "").trim()).filter(Boolean);
-  if (nomesSan.length !== peopleCount) {
-    alert(`Por favor, preencha os ${peopleCount} nome(s).`);
-    return;
-  }
+    const formData = new URLSearchParams();
+    formData.append("nomeConvite", nomeConvite);
+    formData.append("email", email);
+    formData.append("telefone", telefone);
+    formData.append("adultos", adultos);
+    formData.append("criancas", criancas);
+    formData.append("mensagem", mensagem);
 
-  const formData = new URLSearchParams();
-  formData.append("email", email);
-  formData.append("telefone", telefone);
-  formData.append("pessoas", String(peopleCount));
-  formData.append("nomes", JSON.stringify(nomesSan));
-  formData.append("mensagem", mensagem);
-
-  try {
-    const response = await fetch(WEB_APP_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: formData.toString(),
-      redirect: "follow",
-    });
-
-    let ok = false;
     try {
-      const result = await response.json();
-      ok = result?.result === "success";
-    } catch {
-      ok = response.ok;
-    }
+      const response = await fetch("https://script.google.com/macros/s/AKfycbwaLVG-c7xQhGRsHPukpVkbdVKNY8Tugilb2iTfn3emmNoi4qI8tA_NVaBY__d8K64/exec", {
+        method: "POST",
+        body: formData,
+      });
 
-    if (ok) {
-      setRsvpSent(true);
-    } else {
+      const result = await response.json();
+      if (result.result === "success") {
+        setRsvpSent(true);
+        // (opcional) e.target.reset();
+      } else {
+        alert("Erro ao enviar os dados.");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar os dados:", error);
       alert("Erro ao enviar os dados.");
     }
-  } catch (error) {
-    console.error("Erro ao enviar os dados:", error);
-    alert("Erro ao enviar os dados.");
-  }
-};
+  };
 
 
   React.useEffect(() => {
@@ -390,6 +378,10 @@ const onSubmitRSVP = async (e) => {
             </div>
           ) : (
             <form onSubmit={onSubmitRSVP} className="grid2 gap-4">
+              <label className="muted span2">Nome do convite (Ex.: Tia Ana e Família)
+                <input name="nomeConvite" required className="input mt-1" />
+              </label>
+
               <label className="muted">E-mail
                 <input 
                   type="email" 
@@ -409,43 +401,27 @@ const onSubmitRSVP = async (e) => {
                   placeholder="(24) 99123-4567" 
                 />
               </label>
-
-              <label className="muted">
-                Quantidade de pessoas
-                <input
-                  type="number"
-                  min={1}
-                  value={peopleCount}
-                  onChange={(e) => {
-                    const n = Math.max(1, Number(e.target.value || 1));
-                    setPeopleCount(n);
-                    setNames((prev) => {
-                      const copy = [...prev];
-                      copy.length = n;
-                      for (let i = 0; i < n; i++) if (copy[i] == null) copy[i] = "";
-                      return copy;
-                    });
-                  }}
-                  className="input mt-1"
+              
+              <label className="muted">Quantidade de adultos incluindo você
+                <input 
+                  type="number" 
+                  name="adultos"
+                  min={0} 
+                  defaultValue={0} 
+                  className="input mt-1" 
                 />
               </label>
-
-              <div className="span2" />
-
-              <div className="span2" style={{display:"grid", gridTemplateColumns:"1fr", gap:"0.75rem"}}>
-                {Array.from({ length: peopleCount }).map((_, idx) => (
-                  <label key={idx} className="muted">
-                    Nome da pessoa {idx + 1}
-                    <input
-                      className="input mt-1"
-                      value={names[idx] || ""}
-                      onChange={(e) => setNameAt(idx, e.target.value)}
-                      required
-                    />
-                  </label>
-                ))}
-              </div>
-
+              
+              <label className="muted">Quantidade de crianças
+                <input 
+                  type="number" 
+                  name="criancas"
+                  min={0} 
+                  defaultValue={0} 
+                  className="input mt-1" 
+                />
+              </label>
+              
               <label className="muted span2">Mensagem (opcional)
                 <textarea 
                   rows={4} 
