@@ -360,17 +360,21 @@ p{line-height:1.6; color:#4a4a4a; margin:.25rem 0 1rem}
 
   .gift-card {
     height: auto;
+    min-height: 460px;
   }
   .gift-media {
-    height: 140px;
+    height: 180px;
+    object-fit: cover;
   }
   .gift-title {
-    font-size: 1rem;
-    height: 3rem;
+    font-size: 1.05rem;
+    height: auto;
+    line-height: 1.4;
   }
   .gift-actions {
     gap: .5rem;
     padding-bottom: .75rem;
+    margin-top: auto;
   }
 }
 
