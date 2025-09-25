@@ -372,53 +372,53 @@ export default function App(){
           ) : (
             <form onSubmit={onSubmitRSVP} className="grid2 gap-4">
               <label className="muted">Nome do Convidado
-                <input name="convidado1" className="input mt-1" />
+                <input name="convidado1" className="input mt-1" autoComplete="off" />
               </label>
               <label className="muted">Nome do Convidado
-                <input name="convidado2" className="input mt-1" />
+                <input name="convidado2" className="input mt-1" autoComplete="off" />
               </label>
               <label className="muted">Nome do Convidado
-                <input name="convidado3" className="input mt-1" />
+                <input name="convidado3" className="input mt-1" autoComplete="off" />
               </label>
               <label className="muted">Nome do Convidado
-                <input name="convidado4" className="input mt-1" />
+                <input name="convidado4" className="input mt-1" autoComplete="off" />
               </label>
               <label className="muted">Nome do Convidado
-                <input name="convidado5" className="input mt-1" />
+                <input name="convidado5" className="input mt-1" autoComplete="off" />
               </label>
 
               <label className="muted">E-mail
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   name="email"
-                  required 
-                  className="input mt-1" 
-                  placeholder="email@exemplo.com" 
+                  required
+                  className="input mt-1"
+                  placeholder="email@exemplo.com"
+                  autoComplete="email"
                 />
               </label>
-              
+
               <label className="muted">Telefone para contato
-                <input 
-                  type="tel" 
+                <input
+                  type="tel"
                   name="telefone"
-                  required 
-                  className="input mt-1" 
-                  placeholder="(24) 99123-4567" 
+                  required
+                  className="input mt-1"
+                  placeholder="(24) 99123-4567"
+                  autoComplete="tel"
+                  inputMode="tel"
+                  pattern="[\d\s()+-]{10,}"
+                  title="Informe um telefone válido"
                 />
               </label>
-              
+
               <label className="muted span2">Mensagem (opcional)
-                <textarea 
-                  rows={4} 
-                  name="mensagem"
-                  className="textarea mt-1" 
-                />
+                <textarea rows={4} name="mensagem" className="textarea mt-1" />
               </label>
               <div className="span2">
                 <button type="submit" className="btn btn-primary full">Enviar Confirmação</button>
               </div>
             </form>
-
           )}
         </div>
       </section>
