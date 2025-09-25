@@ -538,6 +538,11 @@ function GiftListModal({ gifts, onClose, onChoose }) {
           <button className="btn btn-ghost" onClick={onClose} aria-label="Fechar">Fechar</button>
         </div>
 
+      <div className="giftlist-banner" role="status" aria-live="polite">
+        <span className="emoji" aria-hidden>🎉</span>
+        Presença confirmada! Agora que tal presentear os noivos?
+      </div>
+
         <div className="grid3 gap-6">
           {gifts.map(g => (
             <article key={g.id} className="gift-card">

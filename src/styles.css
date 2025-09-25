@@ -311,6 +311,7 @@ p{line-height:1.6; color:#4a4a4a; margin:.25rem 0 1rem}
   flex-wrap: wrap;
 }
 
+/* ====== MOBILE AJUSTES HERO ====== */
 @media (max-width: 768px) {
   .hero .grid2 > div:nth-child(2) {
     justify-self: start;
@@ -366,4 +367,29 @@ p{line-height:1.6; color:#4a4a4a; margin:.25rem 0 1rem}
   #rsvp .span2[style*="grid-template-columns"] {
     grid-template-columns: 1fr 1fr !important;
   }
+}
+
+.giftlist-banner{
+  margin: 8px 0 16px;
+  padding: .9rem 1rem;
+  border: 1px solid var(--areia);
+  background: var(--perola);
+  border-radius: 14px;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+.giftlist-banner .emoji{ margin-right: .35rem }
+
+@media (max-width: 768px){
+  #rsvp h2,
+  #rsvp > .container > p { text-align: center; }
+
+  #como-chegar h2,
+  #como-chegar > .container > p { text-align: center; }
+
+  #como-chegar .card { text-align: center; }
+  #como-chegar .card .row { justify-content: center; }
+
+  #como-chegar .grid2 { justify-items: center; }
 }
