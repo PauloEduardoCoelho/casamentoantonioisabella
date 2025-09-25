@@ -6,7 +6,7 @@ export default function App(){
   const VENUE = "Espaço de Festas Quintal do Zé Alencar";
   const ADDRESS = "Tv. Maria Gomes - Madruga, Vassouras - RJ, 27700-000";
   const PIX_KEY = "185.848.267-42";
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwaLVG-c7xQhGRsHPukpVkbdVKNY8Tugilb2iTfn3emmNoi4qI8tA_NVaBY__d8K64/exec";
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwFrsMGz46w3OvRCmQQJEjT-j6EHJ3jxL2n95gAfNwfiV5YQa0XatiseWcdM82Qotc/exec";
 
 
   const gifts = [
@@ -143,7 +143,7 @@ export default function App(){
     },
   ];
 
- const [copied, setCopied] = React.useState(false);
+  const [copied, setCopied] = React.useState(false);
   const [rsvpSent, setRsvpSent] = React.useState(false);
 
   const [giftListOpen, setGiftListOpen] = React.useState(false);
@@ -424,8 +424,6 @@ export default function App(){
                 <input 
                   type="number" 
                   name="adultos"
-                  min={0} 
-                  defaultValue={0} 
                   className="input mt-1" 
                 />
               </label>
@@ -434,8 +432,6 @@ export default function App(){
                 <input 
                   type="number" 
                   name="criancas"
-                  min={0} 
-                  defaultValue={0} 
                   className="input mt-1" 
                 />
               </label>
