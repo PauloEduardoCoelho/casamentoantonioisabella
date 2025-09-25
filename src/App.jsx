@@ -196,27 +196,31 @@ export default function App(){
   const payCard = (gift) => {
     alert(`Pagamento por cartão em breve.\n\nPresente: ${gift.title} — R$ ${gift.price.toFixed(2)}`);
   };
-    const onSubmitRSVP = async (e) => {
+
+  const onSubmitRSVP = async (e) => {
     e.preventDefault();
-    const convidado1 = e.target.convidado1.value.trim();
-    const convidado2 = e.target.convidado2.value.trim();
-    const convidado3 = e.target.convidado3.value.trim();
-    const convidado4 = e.target.convidado4.value.trim();
-    const convidado5 = e.target.convidado5.value.trim();
+
+    const nomeConvite = e.target.nomeConvite.value;
     const email = e.target.email.value;
     const telefone = e.target.telefone.value;
+    const adultos = e.target.adultos.value;
+    const criancas = e.target.criancas.value;
     const mensagem = e.target.mensagem.value;
+
     const formData = new URLSearchParams();
-    formData.append("convidado1", convidado1);
-    formData.append("convidado2", convidado2);
-    formData.append("convidado3", convidado3);
-    formData.append("convidado4", convidado4);
-    formData.append("convidado5", convidado5);
+    formData.append("nomeConvite", nomeConvite);
     formData.append("email", email);
     formData.append("telefone", telefone);
+    formData.append("adultos", adultos);
+    formData.append("criancas", criancas);
     formData.append("mensagem", mensagem);
+
     try {
-      const response = await fetch(WEB_APP_URL, { method: "POST", body: formData });
+      const response = await fetch("https://script.google.com/macros/s/AKfycbwaLVG-c7xQhGRsHPukpVkbdVKNY8Tugilb2iTfn3emmNoi4qI8tA_NVaBY__d8K64/exec", {
+        method: "POST",
+        body: formData,
+      });
+
       const result = await response.json();
       if (result.result === "success") {
         setRsvpSent(true);
@@ -224,9 +228,11 @@ export default function App(){
         alert("Erro ao enviar os dados.");
       }
     } catch (error) {
+      console.error("Erro ao enviar os dados:", error);
       alert("Erro ao enviar os dados.");
     }
   };
+
 
   React.useEffect(() => {
     const ids = ["presenteie", "rsvp", "convite", "como-chegar"];
@@ -371,54 +377,62 @@ export default function App(){
             </div>
           ) : (
             <form onSubmit={onSubmitRSVP} className="grid2 gap-4">
-              <label className="muted">Nome do Convidado
-                <input name="convidado1" className="input mt-1" autoComplete="off" />
-              </label>
-              <label className="muted">Nome do Convidado
-                <input name="convidado2" className="input mt-1" autoComplete="off" />
-              </label>
-              <label className="muted">Nome do Convidado
-                <input name="convidado3" className="input mt-1" autoComplete="off" />
-              </label>
-              <label className="muted">Nome do Convidado
-                <input name="convidado4" className="input mt-1" autoComplete="off" />
-              </label>
-              <label className="muted">Nome do Convidado
-                <input name="convidado5" className="input mt-1" autoComplete="off" />
+              <label className="muted span2">Nome do convite (Ex.: Tia Ana e Família)
+                <input name="nomeConvite" required className="input mt-1" />
               </label>
 
               <label className="muted">E-mail
-                <input
-                  type="email"
+                <input 
+                  type="email" 
                   name="email"
-                  required
-                  className="input mt-1"
-                  placeholder="email@exemplo.com"
-                  autoComplete="email"
+                  required 
+                  className="input mt-1" 
+                  placeholder="email@exemplo.com" 
                 />
               </label>
-
+              
               <label className="muted">Telefone para contato
-                <input
-                  type="tel"
+                <input 
+                  type="tel" 
                   name="telefone"
-                  required
-                  className="input mt-1"
-                  placeholder="(24) 99123-4567"
-                  autoComplete="tel"
-                  inputMode="tel"
-                  pattern="[\d\s()+-]{10,}"
-                  title="Informe um telefone válido"
+                  required 
+                  className="input mt-1" 
+                  placeholder="(24) 99123-4567" 
                 />
               </label>
-
+              
+              <label className="muted">Quantidade de adultos incluindo você
+                <input 
+                  type="number" 
+                  name="adultos"
+                  min={0} 
+                  defaultValue={0} 
+                  className="input mt-1" 
+                />
+              </label>
+              
+              <label className="muted">Quantidade de crianças
+                <input 
+                  type="number" 
+                  name="criancas"
+                  min={0} 
+                  defaultValue={0} 
+                  className="input mt-1" 
+                />
+              </label>
+              
               <label className="muted span2">Mensagem (opcional)
-                <textarea rows={4} name="mensagem" className="textarea mt-1" />
+                <textarea 
+                  rows={4} 
+                  name="mensagem"
+                  className="textarea mt-1" 
+                />
               </label>
               <div className="span2">
                 <button type="submit" className="btn btn-primary full">Enviar Confirmação</button>
               </div>
             </form>
+
           )}
         </div>
       </section>
