@@ -202,37 +202,29 @@ export default function App(){
   const onSubmitRSVP = async (e) => {
     e.preventDefault();
 
-    const nomeConvite = e.target.nomeConvite.value;
-    const email = e.target.email.value;
-    const telefone = e.target.telefone.value;
-    const adultos = e.target.adultos.value;
-    const criancas = e.target.criancas.value;
-    const mensagem = e.target.mensagem.value;
-
     const formData = new URLSearchParams();
-    formData.append("nomeConvite", nomeConvite);
-    formData.append("email", email);
-    formData.append("telefone", telefone);
-    formData.append("adultos", adultos);
-    formData.append("criancas", criancas);
-    formData.append("mensagem", mensagem);
+    formData.append("nomeConvite", e.target.nomeConvite.value);
+    formData.append("email",       e.target.email.value);
+    formData.append("telefone",    e.target.telefone.value);
+    formData.append("adultos",     e.target.adultos.value || "0");
+    formData.append("criancas",    e.target.criancas.value || "0");
+    formData.append("mensagem",    e.target.mensagem.value || "");
 
     try {
-      const response = await fetch(WEB_APP_URL, {
+      await fetch(WEB_APP_URL, {
         method: "POST",
-        body: formData,
+        mode: "no-cors", // evita o bloqueio de CORS
+        headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+        body: formData.toString(),
+        cache: "no-cache",
+        redirect: "follow",
       });
 
-      const result = await response.json();
-      if (result.result === "success") {
-        setRsvpSent(true);
-        setGiftListOpen(true);
-      } else {
-        alert("Erro ao enviar os dados.");
-      }
-    } catch (error) {
-      console.error("Erro ao enviar os dados:", error);
-      alert("Erro ao enviar os dados.");
+      setRsvpSent(true);
+      setGiftListOpen(true);
+    } catch (err) {
+      console.error("Erro ao enviar os dados:", err);
+      alert("Não foi possível enviar agora. Tente novamente em instantes.");
     }
   };
 
