@@ -6,7 +6,7 @@ export default function App(){
   const VENUE = "Espaço de Festas Quintal do Zé Alencar";
   const ADDRESS = "Tv. Maria Gomes - Madruga, Vassouras - RJ, 27700-000";
   const PIX_KEY = "185.848.267-42";
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwFrsMGz46w3OvRCmQQJEjT-j6EHJ3jxL2n95gAfNwfiV5YQa0XatiseWcdM82Qotc/exec";
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw2He3wUwjBHQIk_mFe16WPSByXqAZRiynpuvLqkO3bJevsiUmFU6Y3sz-GQpYI1Zg/exec";
 
 
   const gifts = [
@@ -200,33 +200,26 @@ export default function App(){
   };
 
   const onSubmitRSVP = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const formData = new URLSearchParams();
-    formData.append("nomeConvite", e.target.nomeConvite.value);
-    formData.append("email",       e.target.email.value);
-    formData.append("telefone",    e.target.telefone.value);
-    formData.append("adultos",     e.target.adultos.value || "0");
-    formData.append("criancas",    e.target.criancas.value || "0");
-    formData.append("mensagem",    e.target.mensagem.value || "");
+  const fd = new FormData(e.currentTarget);
 
-    try {
-      await fetch(WEB_APP_URL, {
-        method: "POST",
-        mode: "no-cors", // evita o bloqueio de CORS
-        headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-        body: formData.toString(),
-        cache: "no-cache",
-        redirect: "follow",
-      });
+  try {
+    await fetch(WEB_APP_URL, {
+      method: "POST",
+      mode: "no-cors",
+      body: fd,
+      cache: "no-cache",
+      redirect: "follow",
+    });
 
-      setRsvpSent(true);
-      setGiftListOpen(true);
-    } catch (err) {
-      console.error("Erro ao enviar os dados:", err);
-      alert("Não foi possível enviar agora. Tente novamente em instantes.");
-    }
-  };
+    setRsvpSent(true);
+    setGiftListOpen(true);
+  } catch (err) {
+    console.error("Erro ao enviar os dados:", err);
+    alert("Não foi possível enviar agora. Tente novamente em instantes.");
+  }
+};
 
   React.useEffect(() => {
     const ids = ["presenteie", "rsvp", "convite", "como-chegar"];
