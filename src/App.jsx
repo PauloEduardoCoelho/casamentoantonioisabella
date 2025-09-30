@@ -6,7 +6,7 @@ export default function App(){
   const VENUE = "Espaço de Festas Quintal do Zé Alencar";
   const ADDRESS = "Tv. Maria Gomes - Madruga, Vassouras - RJ, 27700-000";
   const PIX_KEY = "185.848.267-42";
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxq8SPMZOR1Wsf7b6CTKtpOeT8s7iGaruDZzeljjfkPJa-QHHKbQhxuj4M4Ibnp/exec";
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbym9Laz53Yap0gCmRNV6_xyrxPyxhEIXLrZczYz9CatN2asZwk6ztRkjgweq55kTZE/exec";
 
   const gifts = [
     {
@@ -146,7 +146,6 @@ export default function App(){
   const [rsvpSent, setRsvpSent] = React.useState(false);
   const [giftListOpen, setGiftListOpen] = React.useState(false);
   const [giftOptGift, setGiftOptGift] = React.useState(null);
-
   const [peopleCount, setPeopleCount] = React.useState(1);
 
   const [pixOpen, setPixOpen] = React.useState(false);
@@ -377,24 +376,25 @@ export default function App(){
                 />
               </label>
 
-              <label className="muted">
-                Quantidade de pessoas (incluindo você)
-                <input
-                  type="number"
-                  name="qtd"
-                  min={1}
-                  max={5}
-                  required
-                  className="input mt-1"
-                  value={peopleCount}
-                  onChange={(e)=>{
-                    const v = parseInt(e.target.value,10);
-                    if (isNaN(v)) return;
-                    const clamped = Math.max(1, Math.min(5, v));
-                    setPeopleCount(clamped);
-                  }}
-                />
-              </label>
+              {/* Quantidade (1..5) com rádio */}
+              <fieldset className="span2" style={{border:0, padding:0, margin:0}}>
+                <legend className="muted">Quantidade de pessoas (incluindo você)</legend>
+                <div className="row gap-3 mt-1" role="radiogroup" aria-label="Quantidade de pessoas">
+                  {[1,2,3,4,5].map(n=>(
+                    <label key={n} style={{display:"inline-flex", alignItems:"center", gap:".4rem"}}>
+                      <input
+                        type="radio"
+                        name="qtd"
+                        value={n}
+                        checked={peopleCount===n}
+                        onChange={()=>setPeopleCount(n)}
+                        required
+                      />
+                      <span>{n}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
 
               <div className="span2" style={{display:"contents"}}>
                 {Array.from({length: peopleCount}).map((_, i)=>(
