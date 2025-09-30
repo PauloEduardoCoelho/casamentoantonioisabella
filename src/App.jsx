@@ -6,8 +6,7 @@ export default function App(){
   const VENUE = "Espaço de Festas Quintal do Zé Alencar";
   const ADDRESS = "Tv. Maria Gomes - Madruga, Vassouras - RJ, 27700-000";
   const PIX_KEY = "185.848.267-42";
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw2He3wUwjBHQIk_mFe16WPSByXqAZRiynpuvLqkO3bJevsiUmFU6Y3sz-GQpYI1Zg/exec";
-
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxciaysL5oFzP95JLepIAi-BC9pEoFNZL8MwT_gxm3sanO7mVpA_azic5zYyDhGoAw/exec";
 
   const gifts = [
     {
@@ -165,7 +164,8 @@ export default function App(){
 
   const scrollToId = (id) => {
     const el = document.getElementById(id);
-    const headerHeight = document.querySelector(".navbar").offsetHeight;
+    const header = document.querySelector(".navbar");
+    const headerHeight = header ? header.offsetHeight : 0;
     if (el) {
       window.scrollTo({
         top: el.offsetTop - headerHeight,
@@ -200,26 +200,23 @@ export default function App(){
   };
 
   const onSubmitRSVP = async (e) => {
-  e.preventDefault();
-
-  const fd = new FormData(e.currentTarget);
-
-  try {
-    await fetch(WEB_APP_URL, {
-      method: "POST",
-      mode: "no-cors",
-      body: fd,
-      cache: "no-cache",
-      redirect: "follow",
-    });
-
-    setRsvpSent(true);
-    setGiftListOpen(true);
-  } catch (err) {
-    console.error("Erro ao enviar os dados:", err);
-    alert("Não foi possível enviar agora. Tente novamente em instantes.");
-  }
-};
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    try {
+      await fetch(WEB_APP_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: fd,
+        cache: "no-cache",
+        redirect: "follow",
+      });
+      setRsvpSent(true);
+      setGiftListOpen(true);
+    } catch (err) {
+      console.error("Erro ao enviar os dados:", err);
+      alert("Não foi possível enviar agora. Tente novamente em instantes.");
+    }
+  };
 
   React.useEffect(() => {
     const ids = ["presenteie", "rsvp", "convite", "como-chegar"];
@@ -381,10 +378,6 @@ export default function App(){
             </div>
           ) : (
             <form onSubmit={onSubmitRSVP} className="grid2 gap-4">
-              <label className="muted span2">Nome do convite (Ex.: Tia Ana e Família)
-                <input name="nomeConvite" required className="input mt-1" />
-              </label>
-
               <label className="muted">E-mail
                 <input 
                   type="email" 
@@ -404,21 +397,26 @@ export default function App(){
                   placeholder="(24) 99123-4567" 
                 />
               </label>
-              
-              <label className="muted">Quantidade de adultos incluindo você
-                <input 
-                  type="number" 
-                  name="adultos"
-                  className="input mt-1" 
-                />
+
+              {/* 5 campos de convidados — todos com o mesmo rótulo */}
+              <label className="muted span2">Nome do Convidado
+                <input name="convidado1" required className="input mt-1" placeholder="Nome do Convidado" />
               </label>
-              
-              <label className="muted">Quantidade de crianças
-                <input 
-                  type="number" 
-                  name="criancas"
-                  className="input mt-1" 
-                />
+
+              <label className="muted span2">Nome do Convidado
+                <input name="convidado2" className="input mt-1" placeholder="Nome do Convidado" />
+              </label>
+
+              <label className="muted span2">Nome do Convidado
+                <input name="convidado3" className="input mt-1" placeholder="Nome do Convidado" />
+              </label>
+
+              <label className="muted span2">Nome do Convidado
+                <input name="convidado4" className="input mt-1" placeholder="Nome do Convidado" />
+              </label>
+
+              <label className="muted span2">Nome do Convidado
+                <input name="convidado5" className="input mt-1" placeholder="Nome do Convidado" />
               </label>
               
               <label className="muted span2">Mensagem (opcional)
@@ -432,7 +430,6 @@ export default function App(){
                 <button type="submit" className="btn btn-primary full">Enviar Confirmação</button>
               </div>
             </form>
-
           )}
         </div>
       </section>
@@ -538,10 +535,10 @@ function GiftListModal({ gifts, onClose, onChoose }) {
           <button className="btn btn-ghost" onClick={onClose} aria-label="Fechar">Fechar</button>
         </div>
 
-      <div className="giftlist-banner" role="status" aria-live="polite">
-        <span className="emoji" aria-hidden>🎉</span>
-        Presença confirmada! Agora que tal presentear os noivos?
-      </div>
+        <div className="giftlist-banner" role="status" aria-live="polite">
+          <span className="emoji" aria-hidden>🎉</span>
+          Presença confirmada! Agora que tal presentear os noivos?
+        </div>
 
         <div className="grid3 gap-6">
           {gifts.map(g => (
@@ -665,7 +662,8 @@ function PixModal({ gift, couple, onClose }){
 function InvitationCard({ couple }) {
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
-    const headerHeight = document.querySelector(".navbar").offsetHeight;
+    const header = document.querySelector(".navbar");
+    const headerHeight = header ? header.offsetHeight : 0;
     if (el) {
       window.scrollTo({
         top: el.offsetTop - headerHeight,
