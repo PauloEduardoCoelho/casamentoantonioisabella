@@ -6,7 +6,7 @@ export default function App(){
   const VENUE = "Espaço de Festas Quintal do Zé Alencar";
   const ADDRESS = "Tv. Maria Gomes - Madruga, Vassouras - RJ, 27700-000";
   const PIX_KEY = "185.848.267-42";
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxciaysL5oFzP95JLepIAi-BC9pEoFNZL8MwT_gxm3sanO7mVpA_azic5zYyDhGoAw/exec";
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxq8SPMZOR1Wsf7b6CTKtpOeT8s7iGaruDZzeljjfkPJa-QHHKbQhxuj4M4Ibnp/exec";
 
   const gifts = [
     {
@@ -144,20 +144,10 @@ export default function App(){
 
   const [copied, setCopied] = React.useState(false);
   const [rsvpSent, setRsvpSent] = React.useState(false);
-
   const [giftListOpen, setGiftListOpen] = React.useState(false);
   const [giftOptGift, setGiftOptGift] = React.useState(null);
 
   const [peopleCount, setPeopleCount] = React.useState(1);
-  const [names, setNames] = React.useState([""]);
-
-  const setNameAt = (idx, value) => {
-    setNames((prev) => {
-      const next = [...prev];
-      next[idx] = value;
-      return next;
-    });
-  };
 
   const [pixOpen, setPixOpen] = React.useState(false);
   const [pixGift, setPixGift] = React.useState(null);
@@ -167,10 +157,7 @@ export default function App(){
     const header = document.querySelector(".navbar");
     const headerHeight = header ? header.offsetHeight : 0;
     if (el) {
-      window.scrollTo({
-        top: el.offsetTop - headerHeight,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: el.offsetTop - headerHeight, behavior: "smooth" });
     }
   };
 
@@ -220,11 +207,7 @@ export default function App(){
 
   React.useEffect(() => {
     const ids = ["presenteie", "rsvp", "convite", "como-chegar"];
-    const entries = ids.map((id) => ({
-      id,
-      el: document.getElementById(id),
-      btn: null,
-    }));
+    const entries = ids.map((id) => ({ id, el: document.getElementById(id), btn: null }));
     const btns = document.querySelectorAll(".nav-link");
     entries.forEach((ent) => {
       ent.btn = Array.from(btns).find((b) => (b.onclick?.toString() || "").includes(ent.id));
@@ -239,10 +222,7 @@ export default function App(){
           ent.btn.classList.add("is-active");
         }
       });
-    }, {
-      rootMargin: "-45% 0px -50% 0px",
-      threshold: 0.01,
-    });
+    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0.01 });
 
     entries.forEach((ent) => ent.el && obs.observe(ent.el));
     return () => obs.disconnect();
@@ -256,7 +236,6 @@ export default function App(){
 
   return (
     <div>
-      {/* Modal PIX (existente) */}
       {pixOpen && (
         <PixModal
           gift={pixGift}
@@ -398,26 +377,38 @@ export default function App(){
                 />
               </label>
 
-              {/* 5 campos de convidados — todos com o mesmo rótulo */}
-              <label className="muted span2">Nome do Convidado
-                <input name="convidado1" required className="input mt-1" placeholder="Nome do Convidado" />
+              <label className="muted">
+                Quantidade de pessoas (incluindo você)
+                <input
+                  type="number"
+                  name="qtd"
+                  min={1}
+                  max={5}
+                  required
+                  className="input mt-1"
+                  value={peopleCount}
+                  onChange={(e)=>{
+                    const v = parseInt(e.target.value,10);
+                    if (isNaN(v)) return;
+                    const clamped = Math.max(1, Math.min(5, v));
+                    setPeopleCount(clamped);
+                  }}
+                />
               </label>
 
-              <label className="muted span2">Nome do Convidado
-                <input name="convidado2" className="input mt-1" placeholder="Nome do Convidado" />
-              </label>
-
-              <label className="muted span2">Nome do Convidado
-                <input name="convidado3" className="input mt-1" placeholder="Nome do Convidado" />
-              </label>
-
-              <label className="muted span2">Nome do Convidado
-                <input name="convidado4" className="input mt-1" placeholder="Nome do Convidado" />
-              </label>
-
-              <label className="muted span2">Nome do Convidado
-                <input name="convidado5" className="input mt-1" placeholder="Nome do Convidado" />
-              </label>
+              <div className="span2" style={{display:"contents"}}>
+                {Array.from({length: peopleCount}).map((_, i)=>(
+                  <label key={i} className="muted span2">
+                    Nome do Convidado {i+1}
+                    <input
+                      name={`convidado${i+1}`}
+                      required
+                      className="input mt-1"
+                      placeholder="Nome do Convidado"
+                    />
+                  </label>
+                ))}
+              </div>
               
               <label className="muted span2">Mensagem (opcional)
                 <textarea 
@@ -426,6 +417,7 @@ export default function App(){
                   className="textarea mt-1" 
                 />
               </label>
+
               <div className="span2">
                 <button type="submit" className="btn btn-primary full">Enviar Confirmação</button>
               </div>
@@ -587,10 +579,7 @@ function PixModal({ gift, couple, onClose }){
       aria-label="Pagamento via Pix"
       className="pix-modal-overlay"
       onClick={(e)=>{ if(e.target.classList.contains("pix-modal-overlay")) onClose(); }}
-      style={{
-        position:"fixed", inset:0, background:"rgba(0,0,0,.45)",
-        display:"flex", alignItems:"center", justifyContent:"center", zIndex:1000
-      }}
+      style={{ position:"fixed", inset:0, background:"rgba(0,0,0,.45)", display:"flex", alignItems:"center", justifyContent:"center", zIndex:1000 }}
     >
       <div className="pix-modal"
         style={{background:"#fff", borderRadius:12, padding:24, width:"min(720px, 92vw)", boxShadow:"0 10px 30px rgba(0,0,0,.25)", maxHeight:"90vh", overflow:"auto"}}
@@ -604,11 +593,7 @@ function PixModal({ gift, couple, onClose }){
           <div>
             <div className="card pix-card" style={{textAlign:"center"}}>
               {qrImg ? (
-                <img
-                  src={qrImg}
-                  alt="QR Code Pix"
-                  className="pix-qr-img"
-                />
+                <img src={qrImg} alt="QR Code Pix" className="pix-qr-img" />
               ) : (
                 <p className="muted">Sem imagem de QR cadastrada para este presente.</p>
               )}
@@ -621,12 +606,7 @@ function PixModal({ gift, couple, onClose }){
           <div style={{display:"grid", gap:12}}>
             <div className="card pix-card">
               <strong>Pix Copia e Cola</strong>
-              <textarea
-                readOnly
-                value={payload}
-                rows={5}
-                style={{width:"100%", marginTop:8, fontFamily:"monospace"}}
-              />
+              <textarea readOnly value={payload} rows={5} style={{width:"100%", marginTop:8, fontFamily:"monospace"}} />
               <div className="pix-modal-actions">
                 <button className="btn btn-primary" onClick={()=>copy(payload)}>Copiar código</button>
               </div>
@@ -634,9 +614,7 @@ function PixModal({ gift, couple, onClose }){
 
             <div className="card pix-card">
               <strong>Chave Pix</strong>
-              <div style={{marginTop:8, wordBreak:"break-all"}}>
-                {pixKey || "—"}
-              </div>
+              <div style={{marginTop:8, wordBreak:"break-all"}}>{pixKey || "—"}</div>
               <div className="pix-modal-actions">
                 <button className="btn btn-ghost" onClick={()=>copy(pixKey)}>Copiar chave</button>
               </div>
@@ -665,24 +643,13 @@ function InvitationCard({ couple }) {
     const header = document.querySelector(".navbar");
     const headerHeight = header ? header.offsetHeight : 0;
     if (el) {
-      window.scrollTo({
-        top: el.offsetTop - headerHeight,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: el.offsetTop - headerHeight, behavior: "smooth" });
     }
   };
 
   return (
     <div className="card center" style={{ textAlign: "center" }}>
-      <div
-        style={{
-          width: 48,
-          height: 48,
-          borderRadius: "999px",
-          margin: "0 auto 1rem",
-          background: "color-mix(in srgb, var(--oliva) 15%, transparent)",
-        }}
-      />
+      <div style={{ width: 48, height: 48, borderRadius: "999px", margin: "0 auto 1rem", background: "color-mix(in srgb, var(--oliva) 15%, transparent)" }} />
       <h2>Convite</h2>
       <p className="muted">
         Com as bênçãos de nossas famílias, convidamos você para celebrar o
@@ -690,31 +657,14 @@ function InvitationCard({ couple }) {
         <strong>{couple.split("&")[1].trim()}</strong> no dia
         <strong> 13/12/2025</strong>, às <strong>10h</strong>.
       </p>
-      <div
-        style={{
-          width: 96,
-          height: 1,
-          background: "var(--areia)",
-          margin: "16px auto",
-        }}
-      />
+      <div style={{ width: 96, height: 1, background: "var(--areia)", margin: "16px auto" }} />
       <p className="muted">
         Local: Espaço de Festas Quintal do Zé Alencar — Tv. Maria Gomes -
         Madruga, Vassouras - RJ
       </p>
       <div className="row gap-3 center" style={{ marginTop: 16 }}>
-        <button
-          onClick={() => scrollToSection("rsvp")}
-          className="btn btn-ghost"
-        >
-          Confirmar Presença
-        </button>
-        <button
-          onClick={() => scrollToSection("como-chegar")}
-          className="btn btn-primary"
-        >
-          Como Chegar
-        </button>
+        <button onClick={() => scrollToSection("rsvp")} className="btn btn-ghost">Confirmar Presença</button>
+        <button onClick={() => scrollToSection("como-chegar")} className="btn btn-primary">Como Chegar</button>
       </div>
     </div>
   );
