@@ -197,7 +197,7 @@ p{line-height:1.6; color:#4a4a4a; margin:.25rem 0 1rem}
   border-radius:18px;
   overflow:hidden;
   box-shadow:var(--shadow-sm);
-  height:380px;
+  height:380px; /* padrão geral */
 }
 
 .gift-media {
@@ -392,4 +392,39 @@ p{line-height:1.6; color:#4a4a4a; margin:.25rem 0 1rem}
   #como-chegar .card .row { justify-content: center; }
 
   #como-chegar .grid2 { justify-items: center; }
+}
+
+@media (min-width: 769px){
+
+  .pix-modal .gift-card{
+    height:auto;
+    min-height:420px;
+  }
+
+  .pix-modal .gift-media{
+    height:180px;
+    object-fit:cover;
+  }
+
+  .pix-modal .gift-body{
+    padding:1rem 1rem .75rem;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .pix-modal .gift-title{
+    font-size:1.06rem;
+    line-height:1.35;
+    margin-bottom:.5rem;
+    word-break:break-word;
+  }
+
+  .pix-modal .gift-price{
+    margin-bottom:.85rem;
+  }
+
+  .pix-modal .gift-actions{
+    margin-top:auto;
+    padding-bottom:1rem;
+  }
 }
