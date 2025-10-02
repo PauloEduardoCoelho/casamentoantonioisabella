@@ -452,7 +452,7 @@ export default function App(){
       <section id="como-chegar" className="section bg-white">
         <div className="container">
           <h2 className="h2 mb-2">Como Chegar</h2>
-          <p>A cerimônia e a recepção serão no <strong>{VENUE}</strong>. Chegue com 30 minutos de antecedência para acomodação.</p>
+          <p>A cerimônia e a recepção serão no <strong>{VENUE}</strong>.</p>
 
           <div className="grid2 gap-6">
             <div className="card">
