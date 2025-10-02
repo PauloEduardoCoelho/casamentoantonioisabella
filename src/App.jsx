@@ -372,7 +372,7 @@ export default function App(){
       <section id="rsvp" className="section">
         <div className="container narrow">
           <h2 className="h2 mb-2">Confirme a Presença</h2>
-          <p>Por favor, preencha seus dados. Entraremos em contato com mais informações e detalhes próximos à data.</p>
+          <p>Por favor, preencha seus dados.</p>
 
           {rsvpSent ? (
             <div className="notice">
