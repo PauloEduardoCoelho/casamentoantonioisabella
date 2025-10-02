@@ -358,6 +358,8 @@ p{line-height:1.6; color:#4a4a4a; margin:.25rem 0 1rem}
   #rsvp .span2[style*="grid-template-columns"] {
     grid-template-columns: 1fr 1fr !important;
   }
+  .hero .grid2 {align-items:center}
+  .hero .grid2 > div:nth-child(2){justify-self:end}
 }
 
 .giftlist-banner{
@@ -371,6 +373,9 @@ p{line-height:1.6; color:#4a4a4a; margin:.25rem 0 1rem}
   box-shadow: var(--shadow-sm);
 }
 .giftlist-banner .emoji{ margin-right: .35rem }
+
+#presenteie h2,
+#presenteie > .container > p { text-align: center; }
 
 @media (max-width: 768px){
   #rsvp h2,
