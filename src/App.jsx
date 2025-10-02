@@ -287,7 +287,7 @@ export default function App(){
       <header className="navbar">
         <div className="navwrap">
           <button onClick={()=>scrollToId("convite")} className="brand" aria-label="Ir ao topo">
-            <span className="brand-dot" />
+            <img src="/images/favicon.ico" alt="" className="brand-icon" />
             <span>{COUPLE}</span>
           </button>
 
@@ -400,7 +400,6 @@ export default function App(){
                 />
               </label>
 
-              {/* Quantidade (1..5) com rádio */}
               <fieldset className="span2" style={{border:0, padding:0, margin:0}}>
                 <legend className="muted">Quantidade de pessoas (incluindo você)</legend>
                 <div className="row gap-3 mt-1" role="radiogroup" aria-label="Quantidade de pessoas">
@@ -673,7 +672,7 @@ function InvitationCard({ couple }) {
 
   return (
     <div className="card center" style={{ textAlign: "center" }}>
-      <div style={{ width: 48, height: 48, borderRadius: "999px", margin: "0 auto 1rem", background: "color-mix(in srgb, var(--oliva) 15%, transparent)" }} />
+      <img src="/images/favicon.ico" alt="" style={{ width: 48, height: 48, margin: "0 auto 1rem", display:"block" }} />
       <h2>Convite</h2>
       <p className="muted">
         Com as bênçãos de nossas famílias, convidamos você para celebrar o
