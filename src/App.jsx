@@ -23,8 +23,14 @@ export default function App(){
     {
       id: "aluguel",
       title: "Aluguel de bebê para treinamento",
-      price: 150.00,
+      price: 180.00,
       img: "/images/aluguel.png",
+    },
+    {
+      id: "alexa",
+      title: "Alexa (para a noiva não mandar só no noivo)",
+      price: 240.00,
+      img: "/images/alexa.png",
     },
     {
       id: "aposentadoria",
@@ -53,13 +59,13 @@ export default function App(){
     {
       id: "churrasco",
       title: "Contribuição para o kit churrasco do noivo (e da galera)",
-      price: 230.00,
+      price: 140.00,
       img: "/images/churrasco.png",
     },
     {
       id: "delivery",
       title: "Fundo para o delivery quando ninguém quiser cozinhar",
-      price: 180.00,
+      price: 150.00,
       img: "/images/delivery.png",
     },
     {
@@ -71,31 +77,37 @@ export default function App(){
     {
       id: "divina",
       title: "Se por uma intervenção divina você se sentir tocado",
-      price: 1000.00,
+      price: 800.00,
       img: "/images/divina.png",
     },
     {
       id: "filhos",
       title: "Cota para perguntar quando vem os filhos",
-      price: 290.00,
+      price: 250.00,
       img: "/images/filhos.png",
     },
     {
       id: "lava",
       title: "Kit lava e seca (porque a máquina não seca sozinha)",
-      price: 270.00,
+      price: 220.00,
       img: "/images/lava.png",
     },
     {
       id: "look",
       title: "Amo vocês, mas gastei o dinheiro no look",
-      price: 70.00,
+      price: 60.00,
+      img: "/images/look.png",
+    },
+    {
+      id: "junto",
+      title: "Poder ir junto com os noivos para a lua de mel",
+      price: 2000000,
       img: "/images/look.png",
     },
     {
       id: "lua",
       title: "Ajuda para os noivos pagarem a lua de mel",
-      price: 390.00,
+      price: 400.00,
       img: "/images/lua.png",
     },
     {
@@ -103,6 +115,12 @@ export default function App(){
       title: "Ajuda para o casal pagar a conta de luz do ar-condicionado no verão",
       price: 210.00,
       img: "/images/divina.png",
+    },
+    {
+      id: "massagem",
+      title: "Massagem relaxante para o noivo depois de ver a conta do casamento",
+      price: 200.00,
+      img: "/images/massagem.png",
     },
     {
       id: "nada",
@@ -113,14 +131,20 @@ export default function App(){
     {
       id: "razao",
       title: "Cobertor para o noivo estar coberto de razão",
-      price: 90.00,
+      price: 70.00,
       img: "/images/razao.png",
     },
     {
       id: "ronco",
       title: "Kit tampão de ouvidos para a noiva não ouvir o ronco do noivo",
-      price: 70.00,
+      price: 80.00,
       img: "/images/ronco.png",
+    },
+    {
+      id: "aviao",
+      title: "Olha o aviãozinho...",
+      price: 90.00,
+      img: "/images/aviao.png",
     },
     {
       id: "roupa",
@@ -131,7 +155,7 @@ export default function App(){
     {
       id: "shopee",
       title: "Vale compras da Shopee para a noiva",
-      price: 110.00,
+      price: 100.00,
       img: "/images/shopee.png",
     },
     {
