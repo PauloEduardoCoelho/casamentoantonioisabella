@@ -433,13 +433,13 @@ export default function App(){
                 ))}
               </div>
               
-              <label className="muted span2">Mensagem (opcional)
+              {/* <label className="muted span2">Mensagem (opcional)
                 <textarea 
                   rows={4} 
                   name="mensagem"
                   className="textarea mt-1" 
                 />
-              </label>
+              </label> */}
 
               <div className="span2">
                 <button type="submit" className="btn btn-primary full">Enviar Confirmação</button>
