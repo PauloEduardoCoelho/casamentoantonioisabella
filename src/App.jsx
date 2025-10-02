@@ -102,7 +102,7 @@ export default function App(){
       id: "junto",
       title: "Poder ir junto com os noivos para a lua de mel",
       price: 2000000,
-      img: "/images/look.png",
+      img: "/images/junto.png",
     },
     {
       id: "lua",
