@@ -444,7 +444,7 @@ p{line-height:1.6; color:#4a4a4a; margin:.25rem 0 1rem}
 
 @media (max-width: 768px){
   .hero .grid2 > div:nth-child(2){
-    justify-self: end;
+    justify-self: center;
     margin-left: 0;
     margin-right: 0;
   }
