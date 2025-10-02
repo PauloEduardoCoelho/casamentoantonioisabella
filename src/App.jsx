@@ -101,7 +101,7 @@ export default function App(){
     {
       id: "junto",
       title: "Poder ir junto com os noivos para a lua de mel",
-      price: 2000000,
+      price: 20000,
       img: "/images/junto.png",
     },
     {
@@ -195,18 +195,18 @@ export default function App(){
       return;
     }
     try {
-      const msg = `${COUPLE} — Presente: ${gift.title} (R$ ${gift.price.toFixed(2)}) — CHAVE PIX: ${PIX_KEY}`;
+      const msg = `${COUPLE} — Presente: ${gift.title} (${formatBRL(gift.price)}) — CHAVE PIX: ${PIX_KEY}`;
       await navigator.clipboard.writeText(msg);
       setCopied(true);
       setTimeout(()=>setCopied(false), 2000);
       alert("Chave PIX copiada! Cole no app do seu banco para concluir o pagamento.");
     } catch (e) {
-      alert(`Chave PIX: ${PIX_KEY}\n\nPresente: ${gift.title} — R$ ${gift.price.toFixed(2)}`);
+      alert(`Chave PIX: ${PIX_KEY}\n\nPresente: ${gift.title} — ${formatBRL(gift.price)}`);
     }
   };
 
   const payCard = (gift) => {
-    alert(`Pagamento por cartão em breve.\n\nPresente: ${gift.title} — R$ ${gift.price.toFixed(2)}`);
+    alert(`Pagamento por cartão em breve.\n\nPresente: ${gift.title} — ${formatBRL(gift.price)}`);
   };
 
   const onSubmitRSVP = async (e) => {
@@ -347,13 +347,13 @@ export default function App(){
           <h2 className="h2 mb-2">Presenteie o Casal</h2>
           <p className="mb-8">Escolha um presente para Isabella e Antonio. Ao clicar, você poderá pagar via Pix ou cartão.</p>
 
-          <div className="grid3 gap-6">
+        <div className="grid3 gap-6">
             {gifts.map(g => (
               <article key={g.id} className="gift-card">
                 <img className="gift-media" src={g.img} alt={g.title} loading="lazy" />
                 <div className="gift-body">
                   <h3 className="gift-title">{g.title}</h3>
-                  <p className="gift-price">R$ {g.price.toFixed(2)}</p>
+                  <p className="gift-price">{formatBRL(g.price)}</p>
                   <div className="gift-actions">
                     <button
                       className="btn btn-primary"
@@ -432,14 +432,6 @@ export default function App(){
                   </label>
                 ))}
               </div>
-              
-              {/* <label className="muted span2">Mensagem (opcional)
-                <textarea 
-                  rows={4} 
-                  name="mensagem"
-                  className="textarea mt-1" 
-                />
-              </label> */}
 
               <div className="span2">
                 <button type="submit" className="btn btn-primary full">Enviar Confirmação</button>
@@ -519,7 +511,7 @@ function GiftOptionsModal({ gift, onClose, onPix, onCard }) {
             <img src={gift?.img} alt="" style={{width:64, height:64, objectFit:"cover", borderRadius:8}} />
             <div>
               <div style={{fontWeight:600}}>{gift?.title}</div>
-              <div className="muted">Valor: R$ {gift?.price?.toFixed(2)}</div>
+              <div className="muted">Valor: {formatBRL(gift?.price)}</div>
             </div>
           </div>
         </div>
@@ -561,7 +553,7 @@ function GiftListModal({ gifts, onClose, onChoose }) {
               <img className="gift-media" src={g.img} alt={g.title} loading="lazy" />
               <div className="gift-body">
                 <h4 className="gift-title">{g.title}</h4>
-                <p className="gift-price">R$ {g.price.toFixed(2)}</p>
+                <p className="gift-price">{formatBRL(g.price)}</p>
                 <div className="gift-actions">
                   <button className="btn btn-primary" onClick={()=>onChoose(g)}>Presentear</button>
                 </div>
@@ -646,7 +638,7 @@ function PixModal({ gift, couple, onClose }){
             <div className="card pix-card">
               <strong>Resumo</strong>
               <p className="muted" style={{marginTop:6}}>
-                {couple} — Presente: {gift?.title} — Valor: R$ {gift?.price?.toFixed(2)}
+                {couple} — Presente: {gift?.title} — Valor: {formatBRL(gift?.price)}
               </p>
             </div>
           </div>
@@ -675,11 +667,7 @@ function InvitationCard({ couple }) {
       <img src="/images/favicon.ico" alt="" style={{ width: 48, height: 48, margin: "0 auto 1rem", display:"block" }} />
       <h2>Convite</h2>
       <p className="muted">
-        {/* Com as bênçãos de nossas famílias, convidamos você para celebrar o
-        casamento de <strong>{couple.split("&")[0].trim()}</strong> e{" "}
-        <strong>{couple.split("&")[1].trim()}</strong> no dia
-        <strong> 13/12/2025</strong>, às <strong>10h</strong>. */}
-        { <strong>Cerimônia e recepção</strong>}
+        <strong>Cerimônia e recepção</strong>
       </p>
       <div style={{ width: 96, height: 1, background: "var(--areia)", margin: "16px auto" }} />
       <p className="muted">
@@ -702,6 +690,10 @@ function CdBox({n,label}){
       <div className="cd-label">{label}</div>
     </div>
   );
+}
+
+function formatBRL(n){
+  return new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(Number(n||0));
 }
 
 function calcRemaining(targetISO){
