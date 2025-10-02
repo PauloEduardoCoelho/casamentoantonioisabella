@@ -315,7 +315,8 @@ export default function App(){
         <div className="container grid2 gap-6 section">
           <div>
             <h1 className="title">
-              <span className="text-oliva">{COUPLE}</span><br/>13 de dezembro de 2025
+              <span className="text-oliva">{COUPLE}</span><br/>
+              <span className="title-date">13 de dezembro de 2025</span>
             </h1>
             <p className="lead">
               Com o coração cheio de amor e gratidão, convidamos nossos queridos amigos e familiares
