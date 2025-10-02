@@ -294,8 +294,8 @@ export default function App(){
               <span className="text-oliva">{COUPLE}</span><br/>13 de dezembro de 2025
             </h1>
             <p className="lead">
-              É com enorme alegria que convidamos você para celebrar o amor
-              conosco. Venha brindar, dançar e viver esse dia inesquecível.
+              Com o coração cheio de amor e gratidão, convidamos nossos queridos amigos e familiares
+              para compartilharem conosco um momento único e inesquecível: <b>O nosso casamento!</b>
             </p>
 
             <div className="countdown" aria-label="Contagem regressiva">
