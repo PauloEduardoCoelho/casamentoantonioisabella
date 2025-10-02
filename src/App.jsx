@@ -675,10 +675,11 @@ function InvitationCard({ couple }) {
       <img src="/images/favicon.ico" alt="" style={{ width: 48, height: 48, margin: "0 auto 1rem", display:"block" }} />
       <h2>Convite</h2>
       <p className="muted">
-        Com as bênçãos de nossas famílias, convidamos você para celebrar o
+        {/* Com as bênçãos de nossas famílias, convidamos você para celebrar o
         casamento de <strong>{couple.split("&")[0].trim()}</strong> e{" "}
         <strong>{couple.split("&")[1].trim()}</strong> no dia
-        <strong> 13/12/2025</strong>, às <strong>10h</strong>.
+        <strong> 13/12/2025</strong>, às <strong>10h</strong>. */}
+        { <strong>Cerimônia e recepção</strong>}
       </p>
       <div style={{ width: 96, height: 1, background: "var(--areia)", margin: "16px auto" }} />
       <p className="muted">
