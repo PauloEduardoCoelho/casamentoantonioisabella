@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function App(){
-  const COUPLE = "Isabella & Antonio";
+  const COUPLE = "Antonio & Isabella";
   const CEREMONY_DATE_ISO = "2025-12-13T10:00:00-03:00";
   const VENUE = "Espaço de Festas Quintal do Zé Alencar";
   const ADDRESS = "Tv. Maria Gomes - Madruga, Vassouras - RJ, 27700-000";
