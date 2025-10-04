@@ -458,3 +458,10 @@ p{line-height:1.6; color:#4a4a4a; margin:.25rem 0 1rem}
   font-size:.8em;
   font-weight:500;
 }
+
+.lead-highlight{
+  display:inline-block;
+  margin-top:.25rem;
+  font-size:1.15em;
+  line-height:1.25;
+}

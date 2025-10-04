@@ -321,11 +321,9 @@ export default function App(){
             <p className="lead">
               Com o coração cheio de amor e gratidão, convidamos nossos queridos amigos e familiares
               para compartilharem conosco um momento único e inesquecível:
-              <b>O nosso casamento!</b>
+              <br/>
+              <b className="lead-highlight">O nosso casamento!</b>
             </p>
-            {/* <p className="lead">
-              <b>O nosso casamento!</b>
-            </p> */}
 
             <div className="countdown" aria-label="Contagem regressiva">
               <CdBox n={remaining.days} label="dias" />
