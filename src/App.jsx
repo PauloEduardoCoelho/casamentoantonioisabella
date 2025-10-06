@@ -673,7 +673,6 @@ function InvitationCard({ couple }) {
       <p className="muted">
         Local: Espaço de Festas Quintal do Zé Alencar — Tv. Maria Gomes -
         Madruga, Vassouras - RJ
-        <span>{CEREMONY_DATE_ISO}</span>
       </p>
       <div className="row gap-3 center" style={{ marginTop: 16 }}>
         <button onClick={() => scrollToSection("rsvp")} className="btn btn-ghost">Confirmar Presença</button>
