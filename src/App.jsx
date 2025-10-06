@@ -669,13 +669,11 @@ function InvitationCard({ couple }) {
     <div className="card center" style={{ textAlign: "center" }}>
       <img src="/images/favicon.ico" alt="" style={{ width: 48, height: 48, margin: "0 auto 1rem", display:"block" }} />
       <h2>Cerimônia e Recepção</h2>
-      {/* <p className="muted">
-        <strong>Cerimônia e recepção</strong>
-      </p> */}
       <div style={{ width: 96, height: 1, background: "var(--areia)", margin: "16px auto" }} />
       <p className="muted">
         Local: Espaço de Festas Quintal do Zé Alencar — Tv. Maria Gomes -
         Madruga, Vassouras - RJ
+        <span>{CEREMONY_DATE_ISO}</span>
       </p>
       <div className="row gap-3 center" style={{ marginTop: 16 }}>
         <button onClick={() => scrollToSection("rsvp")} className="btn btn-ghost">Confirmar Presença</button>
