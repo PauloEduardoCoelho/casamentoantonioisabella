@@ -15,9 +15,9 @@ export default function App(){
       price: 50.00,
       img: "/images/50.png",
       pix: {
-        qrImg: "/images/qrcode_50.png",
-        payload: "00020126580014BR.GOV.BCB.PIX013659b498d9-b3e5-4f7c-bc1c-dda426313674520400005303986540550.005802BR5925Paulo Eduardo Fernandes d6009SAO PAULO62140510Spc8jVS2KC63045FEA",
-        key: "59b498d9-b3e5-4f7c-bc1c-dda426313674",
+        qrImg: "/images/qrcode_1.png",
+        payload: "00020126330014BR.GOV.BCB.PIX01111462755976352040000530398654041.005802BR5925Antonio Paulo de Oliveira6009SAO PAULO62140510e3KmNczbBZ6304BB01",
+        key: "14627559763",
       },
     },
     {
