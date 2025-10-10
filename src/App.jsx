@@ -334,7 +334,7 @@ export default function App(){
 
             <div className="row gap-3">
               <a href="#rsvp" onClick={(e)=>{e.preventDefault(); scrollToId("rsvp");}} className="btn btn-primary">Confirmar Presença</a>
-              <a href="#presenteie" onClick={(e)=>{e.preventDefault(); scrollToId("presenteie");}} className="btn btn-ghost">Presentear</a>
+              <a href="#presenteie" onClick={(e)=>{e.preventDefault(); scrollToId("presenteie");}} className="btn btn-primary">Presentear</a>
             </div>
           </div>
           <div>
