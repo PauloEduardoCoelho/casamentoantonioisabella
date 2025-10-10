@@ -676,7 +676,7 @@ function InvitationCard({ couple }) {
       </p>
       <div className="row gap-3 center" style={{ marginTop: 16 }}>
         <button onClick={() => scrollToSection("rsvp")} className="btn btn-ghost">Confirmar Presença</button>
-        <button onClick={() => scrollToSection("como-chegar")} className="btn btn-primary">Como Chegar</button>
+        <button onClick={() => scrollToSection("como-chegar")} className="btn btn-ghost">Como Chegar</button>
       </div>
     </div>
   );
