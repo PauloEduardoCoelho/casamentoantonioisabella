@@ -650,9 +650,6 @@ function PixModal({ gift, couple, onClose }){
           </div>
         </div>
 
-        <p className="muted" style={{fontSize:12, marginTop:12}}>
-          Dica: se o banco pedir, cole o <em>Pix Copia e Cola</em> completo.
-        </p>
       </div>
     </div>
   );
