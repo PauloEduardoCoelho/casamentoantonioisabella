@@ -508,7 +508,7 @@ export default function App(){
 
       <footer className="footer">
         <div className="container row between">
-          <p className="muted">© {new Date().getFullYear()} {COUPLE}</p>
+          <p className="muted">© Koodify</p>
           <p className="muted"></p>
         </div>
       </footer>
