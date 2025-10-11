@@ -480,7 +480,9 @@ export default function App(){
                 <img className="gift-media" src={g.img} alt={g.title} loading="lazy" />
                 <div className="gift-body">
                   <h3 className="gift-title">{g.title}</h3>
-                  <p className="gift-price">{formatBRL(g.price)}</p>
+                  <p className="gift-price">
+                    {g.id === "coracao" ? "R$ ??" : formatBRL(g.price)}
+                  </p>
                   <div className="gift-actions">
                     <button
                       className="btn btn-primary"
@@ -647,7 +649,9 @@ function GiftOptionsModal({ gift, onClose, onPix, onCard }) {
             <img src={gift?.img} alt="" style={{width:64, height:64, objectFit:"cover", borderRadius:8}} />
             <div>
               <div style={{fontWeight:600}}>{gift?.title}</div>
-              <div className="muted">Valor: {formatBRL(gift?.price)}</div>
+              <div className="muted">
+                Valor: {gift?.id === "coracao" ? "R$ ??" : formatBRL(gift?.price)}
+              </div>
             </div>
           </div>
         </div>
@@ -689,7 +693,9 @@ function GiftListModal({ gifts, onClose, onChoose }) {
               <img className="gift-media" src={g.img} alt={g.title} loading="lazy" />
               <div className="gift-body">
                 <h4 className="gift-title">{g.title}</h4>
-                <p className="gift-price">{formatBRL(g.price)}</p>
+                <p className="gift-price">
+                  {g.id === "coracao" ? "R$ ??" : formatBRL(g.price)}
+                </p>
                 <div className="gift-actions">
                   <button className="btn btn-primary" onClick={()=>onChoose(g)}>Presentear</button>
                 </div>
@@ -772,7 +778,7 @@ function PixModal({ gift, couple, onClose }){
           <div className="card pix-card">
             <strong>Resumo</strong>
             <p className="muted" style={{marginTop:6}}>
-              {couple} — Presente: {gift?.title} — Valor: {formatBRL(gift?.price)}
+              {couple} — Presente: {gift?.title} — Valor: {gift?.id === "coracao" ? "R$ ??" : formatBRL(gift?.price)}
             </p>
           </div>
         </div>
