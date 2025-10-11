@@ -262,7 +262,7 @@ export default function App(){
   {
     id: "coracao",
     title: "O que seu coração mandar (você escolhe o valor)",
-    price: "?",
+    price: "",
     img: "/images/coracao.png",
     pix: {
       payload: "d3026e96-0c33-4b3d-8fb1-3f4376eebf 95",
