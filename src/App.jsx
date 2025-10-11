@@ -10,16 +10,6 @@ export default function App(){
 
   const gifts = [
     {
-      id: "50",
-      title: "Toma aqui uns 50,00",
-      price: 50.00,
-      img: "/images/50.png",
-      pix: {
-        payload: "00020126330014BR.GOV.BCB.PIX01111462755976352040000530398654041.005802BR5925Antonio Paulo de Oliveira6009SAO PAULO62140510e3KmNczbBZ6304BB01",
-      },
-      card: { url: "https://seu.link/pagar/50" },
-    },
-    {
       id: "aluguel",
       title: "Aluguel de bebê para treinamento",
       price: 180.00,
@@ -109,6 +99,16 @@ export default function App(){
       price: 60.00,
       img: "/images/look.png",
       card: { url: "https://seu.link/pagar/look" },
+    },
+    {
+      id: "50",
+      title: "Toma aqui uns 50,00",
+      price: 50.00,
+      img: "/images/50.png",
+      pix: {
+        payload: "00020126330014BR.GOV.BCB.PIX01111462755976352040000530398654041.005802BR5925Antonio Paulo de Oliveira6009SAO PAULO62140510e3KmNczbBZ6304BB01",
+      },
+      card: { url: "https://seu.link/pagar/50" },
     },
     {
       id: "junto",
