@@ -128,7 +128,7 @@ export default function App(){
       id: "luz",
       title: "Ajuda para o casal pagar a conta de luz do ar-condicionado no verão",
       price: 210.00,
-      img: "/images/divina.png",
+      img: "/images/luz.png",
       card: { url: "https://seu.link/pagar/luz" },
     },
     {
