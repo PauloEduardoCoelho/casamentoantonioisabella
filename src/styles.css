@@ -268,7 +268,6 @@ p{line-height:1.6; color:#4a4a4a; margin:.25rem 0 1rem}
 .full{width:100%}
 
 .link{
-  text-underline-offset:4px;
   text-decoration-color: color-mix(in srgb, var(--oliva) 40%, transparent);
 }
 .link:hover{ text-decoration-color: var(--oliva) }
