@@ -798,7 +798,7 @@ function CdBox({n,label}){
 
 function formatBRL(n){
   const num = typeof n === "number" ? n : Number(n);
-  if (!isFinite(num)) return "Valor livre";
+  if (!isFinite(num)) return "??";
   return new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(num);
 }
 
