@@ -259,15 +259,18 @@ p{line-height:1.6; color:#4a4a4a; margin:.25rem 0 1rem}
   display:inline-flex; align-items:center; justify-content:center;
   padding:.65rem 1.1rem; border-radius:999px; font-weight:500;
   border:1px solid transparent; transition:opacity .2s, background .2s, border-color .2s, color .2s, transform .06s;
+  text-decoration: none; /* remove sublinhado de links com classe .btn */
 }
 .btn:active{ transform:translateY(1px) }
 .btn-primary{background:var(--oliva); color:#fff; box-shadow:var(--shadow-sm)}
 .btn-primary:hover{opacity:.9}
-.btn-ghost{border:1px solid var(--oliva); color:var(--oliva); background:transparent}
+.btn-ghost{border:1px solid var(--oliva); color:var(--oliva); background:transparent; text-decoration:none;}
 .btn-ghost:hover{background:color-mix(in srgb, var(--oliva) 10%, transparent)}
 .full{width:100%}
 
 .link{
+  text-underline-offset:4px;
+  text-decoration: underline;
   text-decoration-color: color-mix(in srgb, var(--oliva) 40%, transparent);
 }
 .link:hover{ text-decoration-color: var(--oliva) }

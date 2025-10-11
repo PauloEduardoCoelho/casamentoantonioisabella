@@ -443,8 +443,22 @@ export default function App(){
             </div>
 
             <div className="row gap-3">
-              <a href="#rsvp" onClick={(e)=>{e.preventDefault(); scrollToId("rsvp");}} className="btn btn-primary">Confirmar Presença</a>
-              <a href="#presenteie" onClick={(e)=>{e.preventDefault(); scrollToId("presenteie");}} className="btn btn-primary">Presentear</a>
+              <a
+                href="#rsvp"
+                onClick={(e)=>{e.preventDefault(); scrollToId("rsvp");}}
+                className="btn btn-primary"
+                style={{ textDecoration: "none" }}
+              >
+                Confirmar Presença
+              </a>
+              <a
+                href="#presenteie"
+                onClick={(e)=>{e.preventDefault(); scrollToId("presenteie");}}
+                className="btn btn-primary"
+                style={{ textDecoration: "none" }}
+              >
+                Presentear
+              </a>
             </div>
           </div>
           <div>
@@ -557,17 +571,26 @@ export default function App(){
       <section id="como-chegar" className="section bg-white">
         <div className="container">
           <h2 className="h2 mb-2">Como Chegar</h2>
-          <p>A cerimônia e a recepção serão no <strong>{VENUE}</strong>.</p>
+          <p>
+            A cerimônia e a recepção serão no <strong>{VENUE}</strong>.{" "}
+            <strong>Horário: 10h30</strong>
+          </p>
 
           <div className="grid2 gap-6">
             <div className="card">
               <h3 className="mb-2">Endereço</h3>
               <p className="muted">{ADDRESS}</p>
+              <p className="muted"><strong>Horário: 10h30</strong></p>
               <div className="row gap-2 mt-3">
-                <a className="btn btn-ghost"
-                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`}
-                   target="_blank" rel="noreferrer">Abrir no Google Maps</a>
-                <a className="btn btn-ghost" href="https://waze.com/ul" target="_blank" rel="noreferrer">Abrir no Waze</a>
+                <a
+                  className="btn btn-ghost"
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ textDecoration: "none" }}
+                >
+                  Abrir no Google Maps
+                </a>
               </div>
             </div>
 
@@ -681,7 +704,7 @@ function GiftListModal({ gifts, onClose, onChoose }) {
 
 function PixModal({ gift, couple, onClose }){
   const payload = gift?.pix?.payload || "";
-  const isKeyOnly = gift?.id === "coracao"; // ← apenas para este item mostramos “Chave Pix”
+  const isKeyOnly = gift?.id === "coracao"; // apenas para este item mostramos “Chave Pix”
 
   const copy = async (text) => {
     try{
@@ -777,6 +800,8 @@ function InvitationCard({ couple }) {
       <p className="muted">
         Local: Espaço de Festas Quintal do Zé Alencar — Tv. Maria Gomes -
         Madruga, Vassouras - RJ
+        <br/>
+        <strong>Horário: 10h30</strong>
       </p>
       <div className="row gap-3 center" style={{ marginTop: 16 }}>
         <button onClick={() => scrollToSection("rsvp")} className="btn btn-ghost">Confirmar Presença</button>
