@@ -9,268 +9,267 @@ export default function App(){
   const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbym9Laz53Yap0gCmRNV6_xyrxPyxhEIXLrZczYz9CatN2asZwk6ztRkjgweq55kTZE/exec";
 
   const gifts = [
-  {
-    id: "aluguel",
-    title: "Aluguel de bebê para treinamento",
-    price: 180.00,
-    img: "/images/aluguel.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406180.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015077471116304E785",
+    {
+      id: "aluguel",
+      title: "Aluguel de bebê para treinamento",
+      price: 180.00,
+      img: "/images/aluguel.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406180.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015077471116304E785",
+      },
+      card: { url: "https://mpago.la/1nLJmrJ" },
     },
-    card: { url: "https://mpago.la/1nLJmrJ" },
-  },
-  {
-    id: "alexa",
-    title: "Alexa (para a noiva não mandar só no noivo)",
-    price: 240.00,
-    img: "/images/alexa.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406240.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015078442406304C7F2",
+    {
+      id: "alexa",
+      title: "Alexa (para a noiva não mandar só no noivo)",
+      price: 240.00,
+      img: "/images/alexa.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406240.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015078442406304C7F2",
+      },
+      card: { url: "https://mpago.la/19QHUed" },
     },
-    card: { url: "https://mpago.la/19QHUed" },
-  },
-  {
-    id: "aposentadoria",
-    title: "Ajuda para aposentadoria dos noivos",
-    price: 190.00,
-    img: "/images/aposentadoria.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406190.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015077664616304AAE6",
+    {
+      id: "aposentadoria",
+      title: "Ajuda para aposentadoria dos noivos",
+      price: 190.00,
+      img: "/images/aposentadoria.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406190.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015077664616304AAE6",
+      },
+      card: { url: "https://mpago.la/2fpXf7b" },
     },
-    card: { url: "https://mpago.la/2fpXf7b" },
-  },
-  {
-    id: "ar",
-    title: "Cofrinho para o casal comprar um ar-condicionado (e salvar o verão)",
-    price: 250.00,
-    img: "/images/ar.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406250.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150785781863042BF7",
+    {
+      id: "ar",
+      title: "Cofrinho para o casal comprar um ar-condicionado (e salvar o verão)",
+      price: 250.00,
+      img: "/images/ar.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406250.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150785781863042BF7",
+      },
+      card: { url: "https://mpago.la/24YBRG8" },
     },
-    card: { url: "https://mpago.la/24YBRG8" },
-  },
-  {
-    id: "boleto",
-    title: "Adote um boleto vencido",
-    price: 160.00,
-    img: "/images/boleto.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406160.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015077162206304ACC5",
+    {
+      id: "boleto",
+      title: "Adote um boleto vencido",
+      price: 160.00,
+      img: "/images/boleto.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406160.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015077162206304ACC5",
+      },
+      card: { url: "https://mpago.la/2TrXDJq" },
     },
-    card: { url: "https://mpago.la/2TrXDJq" },
-  },
-  {
-    id: "buffet",
-    title: "Primeiro lugar na fila do buffet",
-    price: 310.00,
-    img: "/images/buffet.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406310.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150790171863044383",
+    {
+      id: "buffet",
+      title: "Primeiro lugar na fila do buffet",
+      price: 310.00,
+      img: "/images/buffet.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406310.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150790171863044383",
+      },
+      card: { url: "https://mpago.la/1zL5MVs" },
     },
-    card: { url: "https://mpago.la/1zL5MVs" },
-  },
-  {
-    id: "churrasco",
-    title: "Contribuição para o kit churrasco do noivo (e da galera)",
-    price: 140.00,
-    img: "/images/churrasco.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406140.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150767623963048EB6",
+    {
+      id: "churrasco",
+      title: "Contribuição para o kit churrasco do noivo (e da galera)",
+      price: 140.00,
+      img: "/images/churrasco.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406140.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150767623963048EB6",
+      },
+      card: { url: "https://mpago.la/22Lq7Qy" },
     },
-    card: { url: "https://mpago.la/22Lq7Qy" },
-  },
-  {
-    id: "delivery",
-    title: "Fundo para o delivery quando ninguém quiser cozinhar",
-    price: 150.00,
-    img: "/images/delivery.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406150.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150770187363045930",
+    {
+      id: "delivery",
+      title: "Fundo para o delivery quando ninguém quiser cozinhar",
+      price: 150.00,
+      img: "/images/delivery.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406150.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150770187363045930",
+      },
+      card: { url: "https://mpago.la/2bjAMu8" },
     },
-    card: { url: "https://mpago.la/2bjAMu8" },
-  },
-  {
-    id: "deus",
-    title: "Deus tocou no seu coração",
-    price: 510.00,
-    img: "/images/deus.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406510.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150794026263041B08",
+    {
+      id: "deus",
+      title: "Deus tocou no seu coração",
+      price: 510.00,
+      img: "/images/deus.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406510.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150794026263041B08",
+      },
+      card: { url: "https://mpago.la/11DNpJJ" },
     },
-    card: { url: "https://mpago.la/11DNpJJ" },
-  },
-  {
-    id: "divina",
-    title: "Se por uma intervenção divina você se sentir tocado",
-    price: 800.00,
-    img: "/images/divina.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406800.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150795712563048431",
+    {
+      id: "divina",
+      title: "Se por uma intervenção divina você se sentir tocado",
+      price: 800.00,
+      img: "/images/divina.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406800.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150795712563048431",
+      },
+      card: { url: "https://mpago.la/2kGzNpG" },
     },
-    card: { url: "https://mpago.la/2kGzNpG" },
-  },
-  {
-    id: "filhos",
-    title: "Cota para perguntar quando vem os filhos",
-    price: 280.00,
-    img: "/images/filhos.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406280.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015078766636304FC4A",
+    {
+      id: "filhos",
+      title: "Cota para perguntar quando vem os filhos",
+      price: 280.00,
+      img: "/images/filhos.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406280.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015078766636304FC4A",
+      },
+      card: { url: "https://mpago.la/11DU8Mb" },
     },
-    card: { url: "https://mpago.la/11DU8Mb" },
-  },
-  {
-    id: "lava",
-    title: "Kit lava e seca (porque a máquina não seca sozinha)",
-    price: 220.00,
-    img: "/images/lava.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406220.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015078286816304F23E",
+    {
+      id: "lava",
+      title: "Kit lava e seca (porque a máquina não seca sozinha)",
+      price: 220.00,
+      img: "/images/lava.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406220.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015078286816304F23E",
+      },
+      card: { url: "https://mpago.la/2MpZG5b" },
     },
-    card: { url: "https://mpago.la/2MpZG5b" },
-  },
-  {
-    id: "look",
-    title: "Amo vocês, mas gastei o dinheiro no look",
-    price: 60.00,
-    img: "/images/look.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf95520400005303986540660.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150750516963046E01",
+    {
+      id: "look",
+      title: "Amo vocês, mas gastei o dinheiro no look",
+      price: 60.00,
+      img: "/images/look.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf95520400005303986540660.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150750516963046E01",
+      },
+      card: { url: "https://mpago.la/2iRHege" },
     },
-    card: { url: "https://mpago.la/2iRHege" },
-  },
-  {
-    id: "nada",
-    title: "Só para não dizer que não dei nada",
-    price: 52.00,
-    img: "/images/nada.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf95520400005303986540552.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015074720196304A05A",
+    {
+      id: "nada",
+      title: "Só para não dizer que não dei nada",
+      price: 52.00,
+      img: "/images/nada.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf95520400005303986540552.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015074720196304A05A",
+      },
+      card: { url: "https://mpago.la/2PMnQTN" },
     },
-    card: { url: "https://mpago.la/2PMnQTN" },
-  },
-  {
-    id: "razao",
-    title: "Cobertor para o noivo estar coberto de razão",
-    price: 70.00,
-    img: "/images/razao.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf95520400005303986540570.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015075261116304D74E",
+    {
+      id: "razao",
+      title: "Cobertor para o noivo estar coberto de razão",
+      price: 70.00,
+      img: "/images/razao.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf95520400005303986540570.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015075261116304D74E",
+      },
+      card: { url: "https://mpago.la/26iV9KA" },
     },
-    card: { url: "https://mpago.la/26iV9KA" },
-  },
-  {
-    id: "ronco",
-    title: "Kit tampão de ouvidos para a noiva não ouvir o ronco do noivo",
-    price: 80.00,
-    img: "/images/ronco.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf95520400005303986540580.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150754984163048694",
+    {
+      id: "ronco",
+      title: "Kit tampão de ouvidos para a noiva não ouvir o ronco do noivo",
+      price: 80.00,
+      img: "/images/ronco.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf95520400005303986540580.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150754984163048694",
+      },
+      card: { url: "https://mpago.la/2Jz2zNG" },
     },
-    card: { url: "https://mpago.la/2Jz2zNG" },
-  },
-  {
-    id: "aviao",
-    title: "Olha o aviãozinho...",
-    price: 90.00,
-    img: "/images/aviao.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf95520400005303986540590.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150758066863040608",
+    {
+      id: "aviao",
+      title: "Olha o aviãozinho...",
+      price: 90.00,
+      img: "/images/aviao.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf95520400005303986540590.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr11390150758066863040608",
+      },
+      card: { url: "https://mpago.la/1CA8e4H" },
     },
-    card: { url: "https://mpago.la/1CA8e4H" },
-  },
-  {
-    id: "roupa",
-    title: "Ajuda para a noiva renovar o guarda-roupa do noivo (since 2015)",
-    price: 170.00,
-    img: "/images/roupa.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406170.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015077314126304FBCD",
+    {
+      id: "roupa",
+      title: "Ajuda para a noiva renovar o guarda-roupa do noivo (since 2015)",
+      price: 170.00,
+      img: "/images/roupa.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406170.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015077314126304FBCD",
+      },
+      card: { url: "https://mpago.la/1294wU8" },
     },
-    card: { url: "https://mpago.la/1294wU8" },
-  },
-  {
-    id: "shopee",
-    title: "Vale compras da Shopee para a noiva",
-    price: 100.00,
-    img: "/images/shopee.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406100.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015076078516304E0A9",
+    {
+      id: "shopee",
+      title: "Vale compras da Shopee para a noiva",
+      price: 100.00,
+      img: "/images/shopee.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406100.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015076078516304E0A9",
+      },
+      card: { url: "https://mpago.la/1r9eQ3K" },
     },
-    card: { url: "https://mpago.la/1r9eQ3K" },
-  },
-  {
-    id: "visita",
-    title: "Fundo emergencial para visitas inesperadas (Brincadeira)",
-    price: 130.00,
-    img: "/images/visita.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406130.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015076590616304D36A",
+    {
+      id: "visita",
+      title: "Fundo emergencial para visitas inesperadas (Brincadeira)",
+      price: 130.00,
+      img: "/images/visita.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406130.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015076590616304D36A",
+      },
+      card: { url: "https://mpago.la/2jEzu5n" },
     },
-    card: { url: "https://mpago.la/2jEzu5n" },
-  },
-  {
-    id: "lua",
-    title: "Ajuda para os noivos pagarem a lua de mel",
-    price: 400.00,
-    img: "/images/lua.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406400.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015079228196304FADD",
+    {
+      id: "lua",
+      title: "Ajuda para os noivos pagarem a lua de mel",
+      price: 400.00,
+      img: "/images/lua.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406400.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015079228196304FADD",
+      },
+      card: { url: "https://mpago.la/2qtAyLh" },
     },
-    card: { url: "https://mpago.la/2qtAyLh" },
-  },
-  {
-    id: "luz",
-    title: "Ajuda para o casal pagar a conta de luz do ar-condicionado no verão",
-    price: 210.00,
-    img: "/images/luz.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406210.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015078122076304C854",
+    {
+      id: "luz",
+      title: "Ajuda para o casal pagar a conta de luz do ar-condicionado no verão",
+      price: 210.00,
+      img: "/images/luz.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406210.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015078122076304C854",
+      },
+      card: { url: "https://mpago.la/1Vxwham" },
     },
-    card: { url: "https://mpago.la/1Vxwham" },
-  },
-  {
-    id: "massagem",
-    title: "Massagem relaxante para o noivo depois de ver a conta do casamento",
-    price: 200.00,
-    img: "/images/massagem.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406200.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015077922006304ADFF",
+    {
+      id: "massagem",
+      title: "Massagem relaxante para o noivo depois de ver a conta do casamento",
+      price: 200.00,
+      img: "/images/massagem.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf955204000053039865406200.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015077922006304ADFF",
+      },
+      card: { url: "https://mpago.la/2fsG3Ha" },
     },
-    card: { url: "https://mpago.la/2fsG3Ha" },
-  },
-  {
-    id: "50",
-    title: "Toma aqui uns 50,00",
-    price: 50.00,
-    img: "/images/50.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf95520400005303986540550.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015071958986304C225",
+    {
+      id: "50",
+      title: "Toma aqui uns 50,00",
+      price: 50.00,
+      img: "/images/50.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf95520400005303986540550.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr1139015071958986304C225",
+      },
+      card: { url: "https://mpago.la/23N2YET" },
     },
-    card: { url: "https://mpago.la/23N2YET" },
-  },
-  {
-    id: "junto",
-    title: "Poder ir junto com os noivos para a lua de mel",
-    price: 20000,
-    img: "/images/junto.png",
-    pix: {
-      payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf95520400005303986540820000.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr113901507974506630432D4",
+    {
+      id: "junto",
+      title: "Poder ir junto com os noivos para a lua de mel",
+      price: 20000,
+      img: "/images/junto.png",
+      pix: {
+        payload: "00020126580014br.gov.bcb.pix0136d3026e96-0c33-4b3d-8fb1-3f4376eebf95520400005303986540820000.005802BR5924Antonio Paulo de Oliveir6009Sao Paulo610901227-20062230519daqr113901507974506630432D4",
+      },
+      card: { url: "https://mpago.la/2ziibrn" },
     },
-    card: { url: "https://mpago.la/2ziibrn" },
-  },
-  {
-    id: "coracao",
-    title: "O que seu coração mandar (você escolhe o valor)",
-    price: "",
-    img: "/images/coracao.png",
-    pix: {
-      payload: "d3026e96-0c33-4b3d-8fb1-3f4376eebf 95",
+    {
+      id: "coracao",
+      title: "O que seu coração mandar (você escolhe o valor)",
+      price: "??",
+      img: "/images/coracao.png",
+      pix: {
+        payload: "d3026e96-0c33-4b3d-8fb1-3f4376eebf95",
+      },
+      card: { url: "https://link.mercadopago.com.br/casamentoantonioisa" },
     },
-    card: { url: "https://link.mercadopago.com.br/casamentoantonioisa" },
-  },
-];
-
+  ];
 
   const [copied, setCopied] = React.useState(false);
   const [rsvpSent, setRsvpSent] = React.useState(false);
@@ -682,6 +681,7 @@ function GiftListModal({ gifts, onClose, onChoose }) {
 
 function PixModal({ gift, couple, onClose }){
   const payload = gift?.pix?.payload || "";
+  const isKeyOnly = gift?.id === "coracao"; // ← apenas para este item mostramos “Chave Pix”
 
   const copy = async (text) => {
     try{
@@ -718,11 +718,32 @@ function PixModal({ gift, couple, onClose }){
 
         <div className="pix-modal-grid" style={{display:"grid", gap:12}}>
           <div className="card pix-card">
-            <strong>Pix Copia e Cola</strong>
-            <textarea readOnly value={payload} rows={5} style={{width:"100%", marginTop:8, fontFamily:"monospace"}} />
-            <div className="pix-modal-actions">
-              <button className="btn btn-primary" onClick={()=>copy(payload)}>Copiar código</button>
-            </div>
+            <strong>{isKeyOnly ? "Chave Pix" : "Pix Copia e Cola"}</strong>
+
+            {isKeyOnly ? (
+              <>
+                <input
+                  readOnly
+                  value={payload}
+                  style={{width:"100%", marginTop:8, fontFamily:"monospace"}}
+                />
+                <div className="pix-modal-actions">
+                  <button className="btn btn-primary" onClick={()=>copy(payload)}>Copiar chave</button>
+                </div>
+              </>
+            ) : (
+              <>
+                <textarea
+                  readOnly
+                  value={payload}
+                  rows={5}
+                  style={{width:"100%", marginTop:8, fontFamily:"monospace"}}
+                />
+                <div className="pix-modal-actions">
+                  <button className="btn btn-primary" onClick={()=>copy(payload)}>Copiar código</button>
+                </div>
+              </>
+            )}
           </div>
 
           <div className="card pix-card">
@@ -776,7 +797,9 @@ function CdBox({n,label}){
 }
 
 function formatBRL(n){
-  return new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(Number(n||0));
+  const num = typeof n === "number" ? n : Number(n);
+  if (!isFinite(num)) return "Valor livre";
+  return new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(num);
 }
 
 function calcRemaining(targetISO){
