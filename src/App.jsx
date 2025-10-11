@@ -108,7 +108,7 @@ export default function App(){
       pix: {
         payload: "00020126330014BR.GOV.BCB.PIX01111462755976352040000530398654041.005802BR5925Antonio Paulo de Oliveira6009SAO PAULO62140510e3KmNczbBZ6304BB01",
       },
-      card: { url: "https://seu.link/pagar/50" },
+      card: { url: "https://mpago.la/23N2YET" },
     },
     {
       id: "junto",
@@ -143,7 +143,7 @@ export default function App(){
       title: "Só para não dizer que não dei nada",
       price: 52.00,
       img: "/images/nada.png",
-      card: { url: "https://seu.link/pagar/nada" },
+      card: { url: "https://mpago.la/2PMnQTN" },
     },
     {
       id: "razao",
@@ -186,6 +186,12 @@ export default function App(){
       price: 130.00,
       img: "/images/visita.png",
       card: { url: "https://seu.link/pagar/visita" },
+    },
+    {
+      id: "coracao",
+      title: "O que seu coração mandar (você escolhe o valor)",
+      img: "/images/coracao.png",
+      card: { url: "https://link.mercadopago.com.br/casamentoantonioisa" },
     },
   ];
 
