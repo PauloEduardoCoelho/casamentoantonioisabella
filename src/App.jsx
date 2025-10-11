@@ -15,154 +15,177 @@ export default function App(){
       price: 50.00,
       img: "/images/50.png",
       pix: {
-        qrImg: "/images/qrcode_1.png",
         payload: "00020126330014BR.GOV.BCB.PIX01111462755976352040000530398654041.005802BR5925Antonio Paulo de Oliveira6009SAO PAULO62140510e3KmNczbBZ6304BB01",
-        key: "14627559763",
       },
+      card: { url: "https://seu.link/pagar/50" },
     },
     {
       id: "aluguel",
       title: "Aluguel de bebê para treinamento",
       price: 180.00,
       img: "/images/aluguel.png",
+      card: { url: "https://seu.link/pagar/aluguel" },
     },
     {
       id: "alexa",
       title: "Alexa (para a noiva não mandar só no noivo)",
       price: 240.00,
       img: "/images/alexa.png",
+      card: { url: "https://seu.link/pagar/alexa" },
     },
     {
       id: "aposentadoria",
       title: "Ajuda para aposentadoria dos noivos",
       price: 190.00,
       img: "/images/aposentadoria.png",
+      card: { url: "https://seu.link/pagar/aposentadoria" },
     },
     {
       id: "ar",
       title: "Cofrinho para o casal comprar um ar-condicionado (e salvar o verão)",
       price: 250.00,
       img: "/images/ar.png",
+      card: { url: "https://seu.link/pagar/ar" },
     },
     {
       id: "boleto",
       title: "Adote um boleto vencido",
       price: 160.00,
       img: "/images/boleto.png",
+      card: { url: "https://seu.link/pagar/boleto" },
     },
     {
       id: "buffet",
       title: "Primeiro lugar na fila do buffet",
       price: 310.00,
       img: "/images/buffet.png",
+      card: { url: "https://seu.link/pagar/buffet" },
     },
     {
       id: "churrasco",
       title: "Contribuição para o kit churrasco do noivo (e da galera)",
       price: 140.00,
       img: "/images/churrasco.png",
+      card: { url: "https://seu.link/pagar/churrasco" },
     },
     {
       id: "delivery",
       title: "Fundo para o delivery quando ninguém quiser cozinhar",
       price: 150.00,
       img: "/images/delivery.png",
+      card: { url: "https://seu.link/pagar/delivery" },
     },
     {
       id: "deus",
       title: "Deus tocou no seu coração",
       price: 510.00,
       img: "/images/deus.png",
+      card: { url: "https://seu.link/pagar/deus" },
     },
     {
       id: "divina",
       title: "Se por uma intervenção divina você se sentir tocado",
       price: 800.00,
       img: "/images/divina.png",
+      card: { url: "https://seu.link/pagar/divina" },
     },
     {
       id: "filhos",
       title: "Cota para perguntar quando vem os filhos",
       price: 250.00,
       img: "/images/filhos.png",
+      card: { url: "https://seu.link/pagar/filhos" },
     },
     {
       id: "lava",
       title: "Kit lava e seca (porque a máquina não seca sozinha)",
       price: 220.00,
       img: "/images/lava.png",
+      card: { url: "https://seu.link/pagar/lava" },
     },
     {
       id: "look",
       title: "Amo vocês, mas gastei o dinheiro no look",
       price: 60.00,
       img: "/images/look.png",
+      card: { url: "https://seu.link/pagar/look" },
     },
     {
       id: "junto",
       title: "Poder ir junto com os noivos para a lua de mel",
       price: 20000,
       img: "/images/junto.png",
+      card: { url: "https://seu.link/pagar/junto" },
     },
     {
       id: "lua",
       title: "Ajuda para os noivos pagarem a lua de mel",
       price: 400.00,
       img: "/images/lua.png",
+      card: { url: "https://seu.link/pagar/lua" },
     },
     {
       id: "luz",
       title: "Ajuda para o casal pagar a conta de luz do ar-condicionado no verão",
       price: 210.00,
       img: "/images/divina.png",
+      card: { url: "https://seu.link/pagar/luz" },
     },
     {
       id: "massagem",
       title: "Massagem relaxante para o noivo depois de ver a conta do casamento",
       price: 200.00,
       img: "/images/massagem.png",
+      card: { url: "https://seu.link/pagar/massagem" },
     },
     {
       id: "nada",
       title: "Só para não dizer que não dei nada",
       price: 52.00,
       img: "/images/nada.png",
+      card: { url: "https://seu.link/pagar/nada" },
     },
     {
       id: "razao",
       title: "Cobertor para o noivo estar coberto de razão",
       price: 70.00,
       img: "/images/razao.png",
+      card: { url: "https://seu.link/pagar/razao" },
     },
     {
       id: "ronco",
       title: "Kit tampão de ouvidos para a noiva não ouvir o ronco do noivo",
       price: 80.00,
       img: "/images/ronco.png",
+      card: { url: "https://seu.link/pagar/ronco" },
     },
     {
       id: "aviao",
       title: "Olha o aviãozinho...",
       price: 90.00,
       img: "/images/aviao.png",
+      card: { url: "https://seu.link/pagar/aviao" },
     },
     {
       id: "roupa",
       title: "Ajuda para a noiva renovar o guarda-roupa do noivo (since 2015)",
       price: 170.00,
       img: "/images/roupa.png",
+      card: { url: "https://seu.link/pagar/roupa" },
     },
     {
       id: "shopee",
       title: "Vale compras da Shopee para a noiva",
       price: 100.00,
       img: "/images/shopee.png",
+      card: { url: "https://seu.link/pagar/shopee" },
     },
     {
       id: "visita",
       title: "Fundo emergencial para visitas inesperadas (Brincadeira)",
       price: 130.00,
       img: "/images/visita.png",
+      card: { url: "https://seu.link/pagar/visita" },
     },
   ];
 
@@ -185,13 +208,13 @@ export default function App(){
   };
 
   const payPix = async (gift) => {
-    if (gift?.pix?.payload || gift?.pix?.qrImg || gift?.pix?.key) {
+    if (gift?.pix?.payload) {
       setPixGift(gift);
       setPixOpen(true);
       return;
     }
     if (!PIX_KEY) {
-      alert("Defina a CHAVE PIX (PIX_KEY) ou cadastre o objeto 'pix' no presente.");
+      alert("Defina o Pix Copia e Cola no presente (pix.payload) ou a CHAVE PIX (PIX_KEY).");
       return;
     }
     try {
@@ -206,7 +229,12 @@ export default function App(){
   };
 
   const payCard = (gift) => {
-    alert(`Pagamento por cartão em breve.\n\nPresente: ${gift.title} — ${formatBRL(gift.price)}`);
+    const url = gift?.card?.url;
+    if (!url) {
+      alert("Link de pagamento por cartão não configurado para este presente.");
+      return;
+    }
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   const onSubmitRSVP = async (e) => {
@@ -350,7 +378,7 @@ export default function App(){
           <h2 className="h2 mb-2">Presenteie o Casal</h2>
           <p className="mb-8">Escolha um presente para Isabella e Antonio. Ao clicar, você poderá pagar via Pix ou cartão.</p>
 
-        <div className="grid3 gap-6">
+          <div className="grid3 gap-6">
             {gifts.map(g => (
               <article key={g.id} className="gift-card">
                 <img className="gift-media" src={g.img} alt={g.title} loading="lazy" />
@@ -571,8 +599,6 @@ function GiftListModal({ gifts, onClose, onChoose }) {
 
 function PixModal({ gift, couple, onClose }){
   const payload = gift?.pix?.payload || "";
-  const pixKey  = gift?.pix?.key || "";
-  const qrImg   = gift?.pix?.qrImg || "";
 
   const copy = async (text) => {
     try{
@@ -607,43 +633,20 @@ function PixModal({ gift, couple, onClose }){
           <button className="btn btn-ghost" onClick={onClose} aria-label="Fechar">Fechar</button>
         </div>
 
-        <div className="pix-modal-grid">
-          <div>
-            <div className="card pix-card" style={{textAlign:"center"}}>
-              {qrImg ? (
-                <img src={qrImg} alt="QR Code Pix" className="pix-qr-img" />
-              ) : (
-                <p className="muted">Sem imagem de QR cadastrada para este presente.</p>
-              )}
-              <p style={{marginTop:12, fontSize:12}} className="muted">
-                Aponte a câmera do seu banco para o QR Code
-              </p>
+        <div className="pix-modal-grid" style={{display:"grid", gap:12}}>
+          <div className="card pix-card">
+            <strong>Pix Copia e Cola</strong>
+            <textarea readOnly value={payload} rows={5} style={{width:"100%", marginTop:8, fontFamily:"monospace"}} />
+            <div className="pix-modal-actions">
+              <button className="btn btn-primary" onClick={()=>copy(payload)}>Copiar código</button>
             </div>
           </div>
 
-          <div style={{display:"grid", gap:12}}>
-            <div className="card pix-card">
-              <strong>Pix Copia e Cola</strong>
-              <textarea readOnly value={payload} rows={5} style={{width:"100%", marginTop:8, fontFamily:"monospace"}} />
-              <div className="pix-modal-actions">
-                <button className="btn btn-primary" onClick={()=>copy(payload)}>Copiar código</button>
-              </div>
-            </div>
-
-            <div className="card pix-card">
-              <strong>Chave Pix</strong>
-              <div style={{marginTop:8, wordBreak:"break-all"}}>{pixKey || "—"}</div>
-              <div className="pix-modal-actions">
-                <button className="btn btn-ghost" onClick={()=>copy(pixKey)}>Copiar chave</button>
-              </div>
-            </div>
-
-            <div className="card pix-card">
-              <strong>Resumo</strong>
-              <p className="muted" style={{marginTop:6}}>
-                {couple} — Presente: {gift?.title} — Valor: {formatBRL(gift?.price)}
-              </p>
-            </div>
+          <div className="card pix-card">
+            <strong>Resumo</strong>
+            <p className="muted" style={{marginTop:6}}>
+              {couple} — Presente: {gift?.title} — Valor: {formatBRL(gift?.price)}
+            </p>
           </div>
         </div>
 
