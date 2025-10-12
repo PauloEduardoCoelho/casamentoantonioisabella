@@ -609,7 +609,7 @@ export default function App(){
 
       <footer className="footer">
         <div className="container row between">
-          <p className="muted">© Koodify</p>
+          <p className="muted">© Kodify</p>
           <p className="muted"></p>
         </div>
       </footer>
