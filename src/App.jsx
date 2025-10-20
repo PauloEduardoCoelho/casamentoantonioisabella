@@ -37,15 +37,16 @@ export default function App(){
     { id: "coracao", title: "O que seu coração mandar (você escolhe o valor)", price: "R$ ??", img: "/images/coracao.png", pix: { payload: "d3026e96-0c33-4b3d-8fb1-3f4376eebf95" }, card: { url: "https://link.mercadopago.com.br/casamentoantonioisa" } },
   ];
 
+  // estados
   const [copied, setCopied] = React.useState(false);
-  const [rsvpSent, setRsvpSent] = React.useState(false);
+  const [rsvpStage, setRsvpStage] = React.useState("idle"); // idle | confirming | confirmed
   const [giftListOpen, setGiftListOpen] = React.useState(false);
   const [giftOptGift, setGiftOptGift] = React.useState(null);
   const [peopleCount, setPeopleCount] = React.useState(1);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const [pixOpen, setPixOpen] = React.useState(false);
   const [pixGift, setPixGift] = React.useState(null);
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const scrollToId = (id) => {
     const el = document.getElementById(id);
@@ -86,35 +87,37 @@ export default function App(){
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
-  // ✅ ENVIO OTIMISTA: abre o modal na hora, e envia os dados “por trás”
+  // helper para garantir um delay mínimo antes de confirmar (sensação de processo)
+  const minDelay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+  // SUBMIT com etapa "Confirmando..."
   const onSubmitRSVP = (e) => {
     e.preventDefault();
     if (isSubmitting) return;
 
     setIsSubmitting(true);
+    setRsvpStage("confirming"); // mostra o card na hora
 
-    // 1) abre imediatamente o modal e marca como enviado
-    setRsvpSent(true);
-    setGiftListOpen(true);
-
-    // 2) dispara o envio sem bloquear a UI
     const fd = new FormData(e.currentTarget);
-    // (opcional) registra um timestamp do envio
     fd.append("_submittedAt", new Date().toISOString());
 
-    fetch(WEB_APP_URL, {
+    // dispara envio sem bloquear a UI
+    const send = fetch(WEB_APP_URL, {
       method: "POST",
       mode: "no-cors",
       body: fd,
       cache: "no-cache",
       redirect: "follow",
-    })
-    .catch((err) => {
+    }).catch((err) => {
       console.error("Erro ao enviar os dados:", err);
-      // Mantemos o modal aberto (experiência suave), mas avisamos o usuário.
-      alert("Sua presença foi registrada aqui, mas houve instabilidade no envio ao servidor. Tentaremos novamente mais tarde.");
-    })
-    .finally(() => {
+      // seguimos com a confirmação local para não travar a experiência
+      alert("Houve instabilidade no envio ao servidor. Registramos aqui e tentaremos novamente.");
+    });
+
+    // aguarda pelo menos 900ms para trocar de "confirmando" -> "confirmado"
+    Promise.allSettled([send, minDelay(900)]).finally(() => {
+      setRsvpStage("confirmed");
+      setGiftListOpen(true);  // abre a lista só depois de “confirmado”
       setIsSubmitting(false);
     });
   };
@@ -284,11 +287,23 @@ export default function App(){
           <h2 className="h2 mb-2">Confirme a Presença</h2>
           <p>Por favor, preencha seus dados.</p>
 
-          {rsvpSent ? (
+          {rsvpStage === "confirming" && (
+            <div className="card" style={{padding:16, display:"flex", alignItems:"center", gap:12}}>
+              <Spinner />
+              <div>
+                <p style={{margin:0, fontWeight:600}}>Confirmando sua presença…</p>
+                <p className="muted" style={{margin:"4px 0 0"}}>Isso levará apenas um instante.</p>
+              </div>
+            </div>
+          )}
+
+          {rsvpStage === "confirmed" && (
             <div className="notice">
               <p className="ok">🎉 Obrigado! Sua presença foi registrada.</p>
             </div>
-          ) : (
+          )}
+
+          {rsvpStage === "idle" && (
             <form onSubmit={onSubmitRSVP} className="grid2 gap-4">
               <label className="muted">E-mail
                 <input 
@@ -319,7 +334,6 @@ export default function App(){
                         type="radio"
                         name="qtd"
                         value={n}
-                        checked={peopleCount===n}
                         onChange={()=>setPeopleCount(n)}
                         required
                       />
@@ -356,10 +370,10 @@ export default function App(){
       <section id="como-chegar" className="section bg-white">
         <div className="container">
           <h2 className="h2 mb-2">Como Chegar</h2>
-        <p>
-          A cerimônia e a recepção serão no <strong>{VENUE}</strong>.{" "}
-          <strong>Horário: 10h30</strong>
-        </p>
+          <p>
+            A cerimônia e a recepção serão no <strong>{VENUE}</strong>.{" "}
+            <strong>Horário: 10h30</strong>
+          </p>
 
           <div className="grid2 gap-6">
             <div className="card">
@@ -567,6 +581,28 @@ function PixModal({ gift, couple, onClose }){
         </div>
 
       </div>
+    </div>
+  );
+}
+
+// Spinner simples (inline, sem CSS externo)
+function Spinner(){
+  const size = 18;
+  const border = 3;
+  return (
+    <div
+      aria-hidden
+      style={{
+        width: size, height: size,
+        border: `${border}px solid #ddd`,
+        borderTop: `${border}px solid #555`,
+        borderRadius: "50%",
+        animation: "spin 0.9s linear infinite"
+      }}
+    >
+      <style>
+        {`@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}
+      </style>
     </div>
   );
 }
